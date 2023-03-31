@@ -1,0 +1,675 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@800&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inconsolata', monospace;
+    }
+
+    h4 {
+        border: 2px solid white;
+        padding: 5px;
+        width: 80%;
+        background-color: rgb(174, 34, 3);
+        text-align: center;
+    }
+
+    body {
+        display: flex;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+        background-image: url("img/pikachu.jpg");
+        font-size: 18px;
+        color: #f1f1f1;
+        margin: 50px;
+    }
+
+    .formContainer {
+        max-width: 1200px;
+        width: 100%;
+        background: #000000c0;
+        padding: 50px;
+        border-radius: 5px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    .formContainer .title {
+        color: #fff;
+        font-size: 45px;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    #town_div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .formContainer form .bloque,
+    .formContainer form .bloque2,
+    .formContainer form .bloque3 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    form .bloque2 .inputArea {
+        width: calc(100%/4 - 50px);
+    }
+
+    form .bloque3 .inputArea {
+        width: calc(100%/2 - 40px);
+        margin: 20px auto;
+    }
+
+    form .bloque .inputArea {
+        margin: 20px 0 12px 0;
+        width: calc(100%/3 - 20px);
+    }
+
+
+    .bloque .inputArea input,
+    .bloque2 .inputArea input {
+        margin-top: 6px;
+        height: 40px;
+        width: 100%;
+        outline: none;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        padding: 0px 10px;
+        color: #dbd4d4;
+        font-size: 16px;
+        background-color: rgba(230, 230, 230, 0);
+    }
+
+    form .bloque #largeMail {
+        margin: 20px 0 12px 0;
+        width: calc(100%/3 - 4px);
+        color: #dbd4d4;
+        font-size: 16px;
+    }
+
+    .bloque #largeMail input {
+        margin-top: 5px;
+        height: 40px;
+        width: 200%;
+        outline: none;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        padding: 0px 10px;
+        background-color: rgba(255, 255, 255, 0);
+        font-size: 16px;
+        color: #ccc;
+    }
+
+
+
+    .bloque3 textarea {
+        resize: none;
+        height: 120px;
+        width: 100%;
+        outline: none;
+        border-radius: 3px;
+        color: #ccc;
+        border: 1px solid #ccc;
+        padding: 10px;
+        background-color: rgb(230, 230, 230, 0);
+        margin-top: 5px;
+        font-size: 16px;
+    }
+
+    select {
+        background: transparent;
+        border: 1.2px solid white;
+        color: #a39393;
+        font-size: 15px;
+        height: 30px;
+        padding: 5px;
+        width: 250px;
+        margin-top: 5px;
+    }
+
+    input[type="radio"] {
+        height: auto;
+        margin: 5px;
+    }
+
+    #town_div {
+        margin-bottom: 30px;
+    }
+
+    .bloque label {
+        display: inline-block;
+    }
+
+    p {
+        font-size: 14px;
+        color: rgb(231, 126, 107);
+        margin: 0 0 0 0;
+    }
+
+    .title-2 {
+        margin-top: 35px;
+        margin-bottom: 10px;
+        border-bottom: 2px solid rgba(92, 201, 228, 0.849);
+        width: 100%;
+        color: rgb(123, 206, 227);
+        font-size: 20px;
+    }
+
+    button {
+        margin: 20px auto;
+        width: 600px;
+        height: 50px;
+        margin: 50px calc(100%/2 - 300px) 0;
+        overflow: hidden;
+        text-align: center;
+        background-color: #65a0d3;
+        font-size: 18px;
+        border: 0;
+        cursor: pointer;
+    }
+
+    button:hover {
+        box-shadow: rgba(19, 192, 236, 0.658) 0px 0px 15px;
+        background-color: #784ebb;
+        pointer-events: fill;
+        font-size: 20px;
+    }
+
+
+    h4,
+    p,
+    #daySteps,
+    #rep-legal {
+        display: none;
+    }
+</style>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <title>POKEFORM</title>
+    <link rel="shortcut icon" href="img/charmander.png">
+</head>
+
+<body>
+    <div class="formContainer">
+        <div class="title" id="msj">Conviértete en entrenador Pokemon</div>
+        <form action="" id="pokeForm">
+            <div class="bloque">
+                <div class="title-2">Información personal</div>
+                <div class="inputArea">
+                    <label for="nombre">Nombre:</label>
+                    <p id="errorNom">Este campo solo puede contener caracteres de la A-Z y a-z</p>
+                    <input type="text" id="nombre" placeholder="Escribe un nombre"><br>
+                </div>
+                <div class="inputArea">
+                    <label for="apellido">Apellidos:</label>
+                    <p id="errorApellido">Este campo solo puede contener caracteres de la A-Z y a-z</p>
+                    <input type="text" name="apellido" id="apellido" placeholder="Escribe un apellido"><br>
+                </div>
+
+                <div class="inputArea">
+                    <label for="dni">DNI:</label>
+                    <p id="errorDNI">El DNI es invalido.</p>
+                    <input type="text" name="dni" id="dni" maxlength="9" placeholder="Escribe tu DNI"><br>
+                </div>
+
+                <div class="inputArea">
+                    <label for="adress">Dirección:</label>
+                    <input type="text" name="adress" id="adress" placeholder="Escribe tu dirección"><br>
+                </div>
+
+                <div class="inputArea">
+                    <label for="age">Edad:</label>
+                    <p id="errorEdad">Este campo solo puede contener números.</p>
+                    <input type="age" name="age" id="age" placeholder="Escribe tu edad"><br>
+                </div>
+
+                <div class="inputArea">
+                    <label for="phone">Telefono:</label>
+                    <p id="errorPhone">Este campo solo puede contener números.</p>
+                    <input type="phone" name="phone" id="phone" placeholder="Escribe tu numero"><br>
+                </div>
+
+                <div id="largeMail">
+                    <label for="email">Correo:</label>
+                    <p id="errorEmail">Este correo no es válido (example:user@.gmail.com)</p>
+                    <input type="text" name="email" id="email" placeholder="Escribe un correo electrónico"><br><br>
+                </div>
+            </div>
+            <div class="bloque" id="rep-legal">
+                <div class="title-2">Información representante legal</div>
+                <p id="repLegalError">Eres menor de edad, tus padres deben rellenar estos datos.</p>
+                <div class="inputArea">
+                    <label for="nombre2">Nombre:</label>
+                    <p id="errorNom2">Este campo solo puede contener caracteres de la A-Z y a-z</p>
+                    <input type="text" id="nombre2" placeholder="Escribe un nombre"><br>
+                </div>
+                <div class="inputArea">
+                    <label for="apellido2">Apellidos:</label>
+                    <p id="errorApellido">Este campo solo puede contener caracteres de la A-Z y a-z</p>
+                    <input type="text" name="apellido" id="apellido2" placeholder="Escribe un apellido"><br>
+                </div>
+
+                <div class="inputArea">
+                    <label for="dni2">DNI:</label>
+                    <p id="errorDNI2">El DNI es invalido.</p>
+                    <input type="text" name="dni" id="dni2" maxlength="9" placeholder="Escribe tu DNI"><br>
+                </div>
+            </div>
+
+            <div class="bloque" id="pokemon-select">
+                <div class="title-2">Mi Pokemon</div>
+                <div class="radio-buttons">
+                    <input type="radio" id="pok1" name="pokemon" value="img/pikachu.png">
+                    <label for="pok1">Pikachu</label><br>
+                    <input type="radio" id="pok2" name="pokemon" value="img/charmander128.png">
+                    <label for="pok2">Charmander</label><br>
+                    <input type="radio" id="pok3" name="pokemon" value="img/squirtle.png">
+                    <label for="pok3">Squirtle</label><br>
+                    <input type="radio" id="pok4" name="pokemon" value="img/bulbasaur.png">
+                    <label for="pok4">Bulbasaur</label>
+                </div>
+
+                <div class="inputArea">
+                    <img id="miPok" src="" alt="">
+                </div>
+
+                <div class="inputArea">
+                    <label for="town">Elige una región</label>
+                    <select id="town" name="towns">
+                        <option value="img/paleta.png">Pueblo Paleta</option>
+                        <option value="img/kanto.png">Kanto</option>
+                        <option value="img/hoenn.png">Hoenn</option>
+                        <option value="img/sinnoh.png">Sinnoh</option>
+                        <option value="img/unova.png">Unova o Teselia</option>
+                        <option value="img/kalos.png">Kalos</option>
+                        <option value="img/alola.png">Alola</option>
+                    </select>
+                    <h4 id> Pueblo Paleta</h4>
+                </div>
+
+            </div>
+            <div class="inputArea" id="town_div">
+                <img id="myTown" src="" alt="">
+            </div>
+
+            <div class="bloque2" id="rows-4">
+                <div class="title-2">Estado físico</div>
+                <div class="radio-buttons">
+                    <br><label>Haces algún deporte?</label><br>
+                    <input type="radio" id="wk-yes" name="workout" value="1">
+                    <label for="wk-yes">Yes</label><br>
+                    <input type="radio" id="wk-no" name="workout" value="0">
+                    <label for="wk-no">No</label><br>
+                </div>
+                <div class="inputArea">
+                    <label for="peso">Peso (kg):</label>
+                    <p id="errorPeso">Este campo solo puede contener números.</p>
+                    <input type="number" name="peso" id="peso" placeholder="Escribe tu peso en kilogramos"><br>
+                </div>
+                <div class="inputArea">
+                    <label for="altura">Altura (m):</label>
+                    <p id="errorAltura">Este campo solo puede contener números.</p>
+                    <input type="number" name="altura" id="altura" placeholder="Escribe tu altura en centímetros"><br>
+                </div>
+                <div class="inputArea" id="daySteps">
+                    <label for="pasos">Pasos diarios:</label>
+                    <p id="errorPasos">Este campo solo puede contener números.</p>
+                    <input type="pasos" name="pasos" id="pasos" placeholder="Escribe tus pasos diarios"><br>
+                </div>
+            </div>
+
+            <div class="bloque3" id="rows-4">
+                <div class="title-2">Test psicológico</div>
+                <div class="inputArea">
+                    <label for="know">¿Sabías algo de los pokémons antes?</label><br>
+                    <textarea type="text" name="know" id="know" placeholder="Escribe tu respuesta..."></textarea>
+                </div>
+                <div class="inputArea">
+                    <label for="know">¿Qué tipo de pokémon te gusta más?</label><br>
+                    <textarea type="text" name="know" id="know" placeholder="Escribe tu respuesta..."></textarea>
+                </div>
+                <div class="inputArea">
+                    <label for="know">¿Qué harías si tu pokémon se queda sin energía?</label><br>
+                    <textarea type="text" name="know" id="know" placeholder="Escribe tu respuesta..."></textarea>
+                </div>
+                <div class="inputArea">
+                    <label for="know">¿Qué es un centro pokémon?</label><br><br>
+                    <textarea type="text" name="know" id="know" placeholder="Escribe tu respuesta..."></textarea>
+                </div>
+            </div>
+
+            <button type="submit">Enviar CV</button>
+    </div>
+    </form>
+    </div>
+    <script>
+        function isValidForm() {
+            valido = true;
+
+            valido1 = validatePersonalData();
+            valido2 = validateAge(valido);
+            console.log(valido2);
+            valido3 = validateHealth();
+            if (!(valido1 == true && valido2 == true && valido3 == true))
+                valido = false;
+
+            return valido;
+        }
+
+        function validatePersonalData() {
+            valid = true;
+            if ($("#nombre").val() == '') {
+                $("#nombre").css('box-shadow', "rgba(226, 12, 12, 0.804) 0px 5px 15px");
+                valid = false;
+            } else {
+                if (checkStr($("#nombre").val()) == true) {
+                    $("#nombre").css('box-shadow', "green 0px 5px 15px");
+                    $("#errorNom").css('display', "none");
+                } else if (checkStr($("#nombre").val()) == false) {
+                    valid = false;
+                    $("#nombre").css('box-shadow', "orange 0px 5px 15px");
+                    $("#errorNom").css('display', "block");
+                }
+            }
+
+            if ($("#apellido").val() == '') {
+                $("#apellido").css('box-shadow', "rgba(226, 12, 12, 0.804) 0px 5px 15px");
+                valid = false;
+            } else {
+                if (checkStr($("#apellido").val()) == true) {
+                    $("#apellido").css('box-shadow', "green 0px 5px 15px");
+                    $("#errorApellido").css('display', "none");
+                } else if (checkStr($("#nombre").val()) == false) {
+                    valid = false;
+                    $("#apellido").css('box-shadow', "orange 0px 5px 15px");
+                    $("#errorApellido").css('display', "block");
+                }
+            }
+
+            if ($("#dni").val() == '') {
+                $("#dni").css('box-shadow', "rgba(226, 12, 12, 0.804) 0px 5px 15px");
+                valid = false;
+            } else {
+                if (validateDNI($("#dni").val(), valid) == true) {
+                    $("#dni").css('box-shadow', "green 0px 5px 15px");
+                    $("#errorDNI").css('display', "none");
+                }
+                else {
+                    valid = false;
+                    $("#dni").css('box-shadow', "orange 0px 5px 15px");
+                    $("#errorDNI").css('display', "block");
+                }
+            }
+
+            if ($("#age").val() == '') {
+                $("#age").css('box-shadow', "rgba(226, 12, 12, 0.804) 0px 5px 15px");
+                valid = false;
+            } else {
+                if (checkNums($("#age").val(), valid) == true) {
+                    $("#age").css('box-shadow', "green 0px 5px 15px");
+                    $("#errorEdad").css('display', "none");
+                }
+                else {
+                    valid = false;
+                    $("#age").css('box-shadow', "orange 0px 5px 15px");
+                    $("#errorEdad").css('display', "block");
+                }
+            }
+
+            if ($("#phone").val() == '') {
+                $("#phone").css('box-shadow', "rgba(226, 12, 12, 0.804) 0px 5px 15px");
+                valid = false;
+            } else {
+                if (checkNums($("#phone").val()) === true) {
+                    $("#phone").css('box-shadow', "green 0px 5px 15px");
+                    $("#errorPhone").css('display', "none");
+                    console.log(checkNums($("#phone").val()));
+                } else if (checkNums($("#phone").val()) == false) {
+                    valid = false;
+                    $("#phone").css('box-shadow', "orange 0px 5px 15px");
+                    $("#errorPhone").css('display', "block");
+                }
+            }
+
+            if ($("#email").val() == '') {
+                $("#email").css('box-shadow', "rgba(226, 12, 12, 0.804) 0px 5px 15px");
+                valid = false;
+            } else {
+                if (checkEmail($("#email").val()) === true) {
+                    $("#email").css('box-shadow', "green 0px 5px 15px");
+                    $("#errorEmail").css('display', "none");
+                    console.log(checkEmail($("#email").val()));
+                } else if (checkEmail($("#email").val()) == false) {
+                    valid = false;
+                    $("#email").css('box-shadow', "orange 0px 5px 15px");
+                    $("#errorEmail").css('display', "block");
+                }
+            }
+
+            return valid;
+        }
+
+        function validateReplegal(valid) {
+            if ($("#nombre2").val() == '') {
+                $("#nombre2").css('box-shadow', "rgba(226, 12, 12, 0.804) 0px 5px 15px");
+                valid = false;
+            } else {
+                if (checkStr($("#nombre2").val()) == true) {
+                    $("#nombre2").css('box-shadow', "green 0px 5px 15px");
+                    $("#errorNom2").css('display', "none");
+                } else if (checkStr($("#nombre").val()) == false) {
+                    valid = false;
+                    $("#nombre2").css('box-shadow', "orange 0px 5px 15px");
+                    $("#errorNom2").css('display', "block");
+                }
+            }
+
+            if ($("#apellido2").val() == '') {
+                $("#apellido2").css('box-shadow', "rgba(226, 12, 12, 0.804) 0px 5px 15px");
+                valid = false;
+            } else {
+                if (checkStr($("#apellido2").val()) == true) {
+                    $("#apellido2").css('box-shadow', "green 0px 5px 15px");
+                    $("#errorApellido2").css('display', "none");
+                } else if (checkStr($("#nombre").val()) == false) {
+                    valid = false;
+                    $("#apellido2").css('box-shadow', "orange 0px 5px 15px");
+                    $("#errorApellido2").css('display', "block");
+                }
+            }
+
+            if ($("#dni2").val() == '') {
+                $("#dni2").css('box-shadow', "rgba(226, 12, 12, 0.804) 0px 5px 15px");
+                valid = false;
+            } else {
+                if (validateDNI($("#dni2").val(), valid) == true) {
+                    $("#dni2").css('box-shadow', "green 0px 5px 15px");
+                    $("#errorDNI2").css('display', "none");
+                }
+                else {
+                    valid = false;
+                    $("#dni2").css('box-shadow', "orange 0px 5px 15px");
+                    $("#errorDNI2").css('display', "block");
+                }
+            }
+
+            if (valid == false) {
+                $("#repLegalError").show();
+            } else {
+                $("#repLegalError").hide();
+            }
+
+            console.log("validateRepLegal" + valid);
+            return valid;
+        }
+
+        function validateHealth() {
+            let valid = true;
+            if ($("#peso").val() == '') {
+                $("#peso").css('box-shadow', "rgba(226, 12, 12, 0.804) 0px 5px 15px");
+                valid = false;
+            } else {
+                if (checkNums($("#peso").val(), valid) == true) {
+                    $("#peso").css('box-shadow', "green 0px 5px 15px");
+                    $("#errorPeso").css('display', "none");
+                }
+                else {
+                    valid = false;
+                    $("#peso").css('box-shadow', "orange 0px 5px 15px");
+                    $("#errorPeso").css('display', "block");
+                }
+            }
+            if ($("#altura").val() == '') {
+                $("#daySteps").show();
+                $("#altura").css('box-shadow', "rgba(226, 12, 12, 0.804) 0px 5px 15px");
+                valid = false;
+            } else {
+                if (checkNums($("#altura").val(), valid) == true) {
+                    $("#altura").css('box-shadow', "green 0px 5px 15px");
+                    $("#errorAltura").css('display', "none");
+                }
+                else {
+                    valid = false;
+                    $("#altura").css('box-shadow', "orange 0px 5px 15px");
+                    $("#errorAltura").css('display', "block");
+                }
+            }
+
+            return valid;
+        }
+        //Comprobamos la edad y mostramos (o no) bloque rep. legal
+        function validateAge(valid) {
+            $("#age").blur(function () {
+                let edad = parseInt($("#age").val());
+                if (edad < 18) {
+                    $("#rep-legal").css('display', "block");
+                } else {
+                    $("#rep-legal").css('display', "none");
+                }
+            });
+            if (parseInt($("#age").val()) < 18)
+                valid = validateReplegal(valid);
+            console.log("validateAge: " + valid);
+            return valid;
+        }
+
+        function daySteps() {
+            $('input[name="workout"]').click(function () {
+                if (this.value == 1) {
+                    $("#daySteps").show();
+                } else if (this.value == 0) {
+                    $("#daySteps").hide();
+                }
+            });
+        }
+
+        //Elección de Pókemos: al hacer click en Pikachu nos asigna Pueblo paleta
+        function selectedPikachu() {
+            $("input[name='pokemon']").on("change", function () {
+                // Si se selecciona Pikachu
+                if ($(this).val() === "img/pikachu.png") {
+                    $("#town").hide();
+                    $("h4").show();
+                    // Establecer el valor del select en "Pueblo Paleta"
+                    $('#myTown').attr('src', "img/paleta.png");
+                    $("#town").val("img/paleta.png");
+                } else {
+                    // Mostrar el select
+                    $("h4").hide();
+                    $("#town").show();
+                    $('#town').change(function () {
+                        var imagenURL = $(this).val();
+                        console.log(imagenURL);
+                        $('#myTown').attr('src', imagenURL);
+                        $('#myTown').css('box-shadow', "rgba(19, 192, 236, 0.658) 0px 5px 15px");
+                    });
+                }
+            });
+        }
+
+        // Comprobamo sque el DNI esté bien
+        function validateDNI(dni, valid) {
+            dni = dni.toUpperCase();
+            let letrasValidas = 'TRWAGMYFPDXBNJZSQVHLCKET';
+            let calculoLetra = letrasValidas[dni.slice(0, 8) % 23];
+            if (dni.slice(8, 9) == calculoLetra) valid = true;
+            else valid = false;
+            return valid;
+        }
+
+
+        //Comprobamos campos de texto
+        function checkStr(cadena) {
+            return /^[a-zA-Z\s-]+$/.test(cadena);
+        }
+
+        //Comprobacion numeros
+        function checkNums(num) {
+            return /^[0-9\s-]+$/.test(num);
+        }
+
+        function checkEmail(email) {
+            return /\S+@\S+\.\S+/.test(email);
+        }
+
+        function showImage() {
+            $('input[name="pokemon"]').click(function () {
+                var imagenURL = $(this).val();
+                $('#miPok').attr('src', imagenURL);
+            });
+        }
+
+        function backgroundEffect() {
+            $("input, textarea").focus(function () {
+                $(this).css('box-shadow', "rgba(19, 192, 236, 0.658) 0px 5px 15px");
+            });
+            $("input, textarea").blur(function () {
+                $(this).css('box-shadow', "0 0");
+            });
+        }
+
+
+        $(document).ready(function () {
+            //Comprobar edad: muestra sección datos de encargado legal
+            validateAge();
+
+            //Mostrar imagen del pokemon
+            showImage();
+
+            //Mostrar imagen del pueblo
+            selectedPikachu();
+
+            //Efecto del backgroun
+            backgroundEffect();
+
+            //Pasos diarios shos if excercise
+            daySteps();
+
+            //PRINCIPAL FUNCTION VALIDATE
+            $("#pokeForm").submit(function () {
+                // Esconde el formulario y enseña la frase señalada
+                let done = isValidForm();
+                if (done) {
+                    let nombre = $("#nombre").val();
+                    $("#msj").text(nombre + '\n Eperamos que hayas sido seleccionad@ y te incorpores a nuestra plantilla lo más pronto posible <3');
+                    $("form").hide();
+                }
+                event.preventDefault();
+            });
+        });
+    </script>
+</body>
+
+</html>

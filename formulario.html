@@ -1,0 +1,387 @@
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #784ebb, #65a0d3);
+    }
+
+    .formContainer {
+        max-width: 800px;
+        width: 100%;
+        background: #fff;
+        padding: 25px;
+        border-radius: 5px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    .formContainer .title {
+        color: #784ebb;
+        font-size: 45px;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .formContainer form .personalData {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    form .personalData .inputArea {
+        margin: 20px 0 12px 0;
+        width: calc(100%/2 - 20px);
+    }
+
+    .personalData .inputArea input {
+        height: 40px;
+        width: 100%; 
+        outline: none;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        padding: 0px 10px;
+        background-color: rgb(230, 230, 230);
+    }
+
+    form .personalData #largeMail {
+        margin: 20px 0 12px 0;
+        width: calc(100%/2);
+    }
+
+    .personalData #largeMail input {
+        height: 40px;
+        width: 200%;
+        outline: none;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        padding: 0px 10px;
+        background-color: rgb(230, 230, 230);
+    }
+
+    #queja_box textarea,
+    #sug_box textarea{
+        resize: none;
+        height: 120px;
+        width: 100%;
+        outline: none;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        padding: 0px 10px;
+        background-color: rgb(230, 230, 230);
+    }
+
+    p {
+        display: none;
+        font-size: 13px;
+        color: rgb(231, 126, 107);
+        margin: 0 0 0 0;
+    }
+
+    #queja_box,
+    #sug_box {
+        display: none;
+    }
+
+    button {
+        margin : 20px auto;
+        width : 480px;
+        height : 40px;
+        margin: 0 calc(100%/2 - 250px);
+        overflow: hidden;
+        text-align : center;
+        background-color: #65a0d3;
+        font-size: 15px;
+        border: 0;
+        font-size: 15px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #784ebb;
+        pointer-events: fill;
+    }
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <title>Formularios</title>
+</head>
+<body>
+    <div class="formContainer">
+        <div class="title">Formulario</div>
+        <form name="registration" id="poke_form">
+            <div class="personalData">
+                <div class="inputArea">
+                    <label for="nombre">Nombre:</label>
+                    <p id="errorNom">Este campo solo puede contener caracteres de la A-Z y a-z</p>
+                    <input type="text" id="nombre" placeholder="Escribe un nombre"><br>
+                </div>
+
+                <div class="inputArea">
+                    <label for="lastname">Apellidos:</label>
+                    <p id="errorApellido">Este campo solo puede contener caracteres de la A-Z y a-z</p>
+                    <input type="text" name="apellido" id="apellido" placeholder="Escribe un apellido"><br>
+                </div>
+
+                <div class="inputArea">
+                    <label for="adress">Dirección:</label>
+                    <input type="text" name="adress" id="adress" placeholder="Escribe tu dirección"><br>
+                </div>
+
+                <div class="inputArea">
+                    <label for="cp">CP:</label>
+                    <input type="number" name="cp" id="cp" placeholder="Escribe tu codigo postal"><br>
+                </div>
+
+                <div class="inputArea">
+                    <label for="lastname">DNI:</label>
+                    <p id="errorDNI">El DNI es invalido.</p>
+                    <input type="text" name="dni" id="dni" maxlength="9" placeholder="Escribe tu DNI"><br>
+                </div>
+
+                <div class="inputArea">
+                    <label for="location">Localidad:</label>
+                    <input type="text" name="localidad" id="localidad" placeholder="Escribe tu localidad"><br>
+                </div>
+
+                <div class="inputArea">
+                    <label for="province">Provincia:</label>
+                    <input type="text" name="Provincia" id="Provincia" placeholder="Escribe tu Provincia"><br>
+                </div>
+
+                <div class="inputArea">
+                    <label for="phone">Telefono:</label>
+                    <p id="errorPhone">Este campo solo puede contener números del 0-9.</p>
+                    <input type="phone" name="phone" id="phone" placeholder="Escribe tu numero"><br>
+                </div>
+
+                <div id="largeMail">
+                    <label for="email">Correo:</label>
+                    <p id="errorEmail">Este correo no es válido (example:user@.gmail.com)</p>
+                    <input type="text" name="email" id="email" placeholder="Escribe un correo electrónico"><br><br>
+                </div>
+            </div>
+
+            <label for="typeofperson">Tipo de persona: </label><br>
+            <input type="radio" name="age" value="30">
+            <label for="interested">Interesado</label><br>
+            <input type="radio" name="age" value="60">
+            <label for="representant">Representante</label><br>
+            <input type="radio" name="age" value="100">
+            <label for="delegate">Social delegate</label><br><br>
+
+            <label>Tipo de mensaje:</label><br>
+            <label>Queja
+                <span class="checkmark"></span>
+                <input name="queja" type="checkbox" id="queja">
+            </label><br>
+            <label>Sugerencia
+                <span class="checkmark"></span>
+                <input name="sugerencia" type="checkbox" id="sugerencia">
+            </label><br><br>
+
+            <div id="sug_box">
+                <label for="suggestion">Sugerencia:</label><br>
+                <p id="errorDNI">El DNI es invalido.</p>
+                <textarea type="text" name="suggestion" id="suggestion"
+                    placeholder="Escriba el motivo de su queja..."></textarea><br><br>
+            </div>
+
+            <div id="queja_box">
+                <label for="complaint">Queja:</labe l><br>
+                    <textarea type="text" name="complaint" id="complaint"
+                        placeholder="Escriba el motivo de su queja..."></textarea><br><br><br>
+            </div>
+
+            <button type="submit">Enviar</button>
+
+        </form>
+    </div>
+
+    <script>
+        function isValidForm() {
+            let valid = true;
+            let test1 = validateMessage(valid);
+            let test2 = isValidFormPersonalData(valid);
+
+            if(test1 != true) {
+                valid = false;
+            } else if (test2 != true) {
+                valid = false;
+            }
+            console.log("fin " + valid, poke_form1, poke_form2);
+            return valid;
+        }
+
+        function isValidFormPersonalData(valid) {
+            if ($("#nombre").val() == '') {
+                $("#nombre").css('border', "2px solid red");
+                valid = false;
+            } else {
+                if (checkStr($("#nombre").val()) == true) {
+                    $("#nombre").css('border', "1px solid green");
+                    $("#errorNom").css('display', "none");
+                } else if (checkStr($("#nombre").val()) == false) {
+                    valid = false;
+                    $("#nombre").css('border', "2px solid orange");
+                    $("#errorNom").css('display', "block");
+                }
+            }
+
+            if ($("#apellido").val() == '') {
+                $("#apellido").css('border', "2px solid red");
+                valid = false;
+            } else {
+                if (checkStr($("#apellido").val()) == true) {
+                    $("#errorApellido").css('display', "none");
+                    $("#apellido").css('border', "1px solid green");
+                } else if (checkStr($("#apellido").val()) == false) {
+                    valid = false;
+                    $("#errorApellido").css('display', "block");
+                    $("#apellido").css('border', "2px solid orange");
+                }
+            }
+
+            if ($("#adress").val() == '') {
+                $("#adress").css('border', "2px solid red");
+                valid = false;
+            } else {
+                $("#adress").css('border', "1px solid green");
+            }
+            if ($("#dni").val() == '') {
+                $("#dni").css('border', "2px solid red");
+                valid = false;
+            } else {
+                if (validateDNI($("#dni").val(), valid) == true) {
+                    $("#dni").css('border', "1px solid green");
+                    $("#errorDNI").css('display', "none");
+                }
+                else {
+                    valid = false;
+                    $("#dni").css('border', "2px solid orange");
+                    $("#errorDNI").css('display', "block");
+                }
+            }
+
+            if ($("#phone").val() == '') {
+                $("#phone").css('border', "2px solid red");
+                valid = false;
+            } else {
+                if (checkNums($("#phone").val()) === true) {
+                    $("#phone").css('border', "1px solid green");
+                    $("#errorPhone").css('display', "none");
+                    console.log(checkNums($("#phone").val()));
+                } else if (checkNums($("#phone").val()) == false) {
+                    valid = false;
+                    $("#phone").css('border', "2px solid orange");
+                    $("#errorPhone").css('display', "block");
+                }
+            }
+
+            if ($("#email").val() == '') {
+                $("#email").css('border', "2px solid red");
+                valid = false;
+            } else {
+                if (checkEmail($("#email").val()) === true) {
+                    $("#email").css('border', "1px solid green");
+                    $("#errorEmail").css('display', "none");
+                    console.log(checkEmail($("#email").val()));
+                } else if (checkEmail($("#email").val()) == false) {
+                    valid = false;
+                    $("#email").css('border', "2px solid orange");
+                    $("#errorEmail").css('display', "block");
+                }
+            }
+
+            return valid;
+        }
+
+        function validateMessage(valid) {
+            if ($("#queja").is(":checked") == true) {
+                if ($("#complaint").val() == '') {
+                    $("#complaint").css('border', "2px solid red");
+                    valid = false;
+                } else {
+                    $("#complaint").css('border', "2px solid green");
+                }
+            }
+            if ($("#sugerencia").is(":checked") == true) {
+                if ($("#suggestion").val() == '') {
+                    $("#suggestion").css('border', "2px solid red");
+                    valid = false;
+                } else {
+                    $("#suggestion").css('border', "2px solid green");
+                }
+            }
+
+            return valid;
+        }
+
+        function checkboxMessage() {
+            if ($("#queja").is(":checked") == true) {
+                $("#queja_box").show();
+            } else {
+                $("#queja_box").hide();
+            }
+
+            if ($("#sugerencia").is(":checked") == true) {
+                $("#sug_box").show();
+            } else {
+                $("#sug_box").hide();
+            }
+
+            console.log(valido);
+        }
+
+        function checkNums(num) {
+            return /^[0-9\s-]+$/.poke_form(num);
+        }
+
+        // Comprobamo sque el DNI esté bien
+        function validateDNI(dni, valid) {
+            dni = dni.toUpperCase();
+            let letrasValidas = 'TRWAGMYFPDXBNJZSQVHLCKET';
+            let calculoLetra = letrasValidas[dni.slice(0, 8) % 23];
+            if (dni.slice(8, 9) == calculoLetra) valid = true;
+            else valid = false;
+            return valid;
+        }
+
+        //Comprobamos campos de texto
+        function checkStr(cadena) {
+            return /^[a-zA-Z\s-]+$/.poke_form(cadena);
+        }
+
+        function checkEmail(email) {
+            return /\S+@\S+\.\S+/.poke_form(email);
+        }
+
+        $(document).ready(function () {
+            $("input, textarea").focus(function() {
+                $(this).css('background-color', "white");
+            })
+            $("input, textarea").blur(function() {
+                $(this).css('background-color', "rgb(230, 230, 230)");
+            })
+            $("#queja, #sugerencia").click(function () {
+                checkboxMessage();
+            });
+            $("#poke_form").submit(function () {
+                return isValidForm();
+            });
+        });
+    </script>
+
+</body>
+</html>

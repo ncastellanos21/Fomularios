@@ -1,0 +1,137 @@
+<style>
+    #title {
+        font-size: 38px;
+        text-align: center;
+        margin: 40px auto;
+        color: rgb(32, 102, 194);
+    }
+
+    h4,
+    p,
+    #daySteps,
+    #rep-legal {
+        display: none;
+    }
+</style>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <title>Naomy Ruiz Airlines</title>
+    <link rel="shortcut icon" href="logo.png">
+</head>
+
+<body>
+    <div id="form_container">
+        <div id="title">Naomy Ruiz Airlines</div>
+        <form action="" id="airlineForm">
+            <div id="ticketsData">
+                <div class="inputArea">
+                    <label for="numTick">Nº de Tickets:</label>
+                    <select name="numTick" id="numTick">
+                        <option value="1" selected>1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div><br>
+            </div><br>
+
+            <div id="personalData">
+                <div class="inputArea">
+                    <label for="nombre">Nombre:</label>
+                    <p id="errorNom">Este campo solo puede contener caracteres de la A-Z y a-z</p>
+                    <input type="text" id="nombre" placeholder="Escribe un nombre"><br>
+                </div><br>
+
+                <div class="inputArea">
+                    <label for="apellido">Apellidos:</label>
+                    <p id="errorApellido">Este campo solo puede contener caracteres de la A-Z y a-z</p>
+                    <input type="text" name="apellido" id="apellido" placeholder="Escribe un apellido"><br>
+                </div><br>
+
+                <div class="inputArea">
+                    <label for="dni">DNI:</label>
+                    <p id="errorDNI">El DNI es invalido.</p>
+                    <input type="text" name="dni" id="dni" maxlength="9" placeholder="Escribe tu DNI"><br>
+                </div><br>
+
+                <div class="inputArea">
+                    <label for="adress">Dirección:</label>
+                    <input type="text" name="adress" id="adress" placeholder="Escribe tu dirección"><br>
+                </div><br>
+
+                <div class="inputArea">
+                    <label for="phone">CP:</label>
+                    <p id="errorPhone">Este campo solo puede contener números.</p>
+                    <input type="number" name="cp" id="cp" placeholder="Escribe tu codigo postal"><br>
+                </div><br>
+
+                <div class="inputArea">
+                    <label for="age">Edad:</label>
+                    <p id="errorEdad">Este campo solo puede contener números.</p>
+                    <input type="number" name="age" id="age" placeholder="Escribe tu edad"><br>
+                </div><br>
+            </div>
+        </form>
+    </div>
+    <script>
+        function formDataPersonGenerator() {
+        }
+
+        $(document).ready(function () {
+            $("#numTick").change(function () {
+
+                $("#personalData").empty();
+
+                let div_content = '';
+                div_content += '<div class="inputArea">';
+                div_content += '<label for="nombre">Nombre:</label>';
+                div_content += '<p id="errorNom">Este campo solo puede contener caracteres de la A-Z y a-z</p>';
+                div_content += '<input type="text" id="nombre" placeholder="Escribe un nombre"><br>';
+                div_content += '</div><br>';
+
+                div_content += '<div class="inputArea">';
+                div_content += '<label for="apellido">Apellidos:</label>';
+                div_content += '<p id="errorApellido">Este campo solo puede contener caracteres de la A-Z y a-z</p>';
+                div_content += '<input type="text" name="apellido" id="apellido" placeholder="Escribe un apellido"><br>';
+                div_content += '</div><br>';
+
+                div_content += '<div class="inputArea">';
+                div_content += '<label for="dni">DNI:</label>';
+                div_content += '<p id="errorDNI">El DNI es invalido.</p>';
+                div_content += '<input type="text" name="dni" id="dni" maxlength="9" placeholder="Escribe tu DNI"><br>';
+                div_content += '</div><br>';
+
+                div_content += '<div class="inputArea">';
+                div_content += '<label for="adress">Dirección:</label>';
+                div_content += '<input type="text" name="adress" id="adress" placeholder="Escribe tu dirección"><br>';
+                div_content += '</div><br>';
+
+                div_content += '<div class="inputArea">';
+                div_content += '<label for="phone">CP:</label>';
+                div_content += '<p id="errorPhone">Este campo solo puede contener números.</p>';
+                div_content += '<input type="number" name="cp" id="cp" placeholder="Escribe tu codigo postal"><br>';
+                div_content += '</div><br>';
+
+                div_content += '<div class="inputArea">';
+                div_content += '<label for="age">Edad:</label>';
+                div_content += '<p id="errorEdad">Este campo solo puede contener números.</p>';
+                div_content += '<input type="number" name="age" id="age" placeholder="Escribe tu edad"><br>';
+                div_content += '</div><br>';
+
+                let numTickets = $("#numTick").val();
+
+                for (let i = 0; i < numTickets; i++) {
+                    $("#personalData").html($("#personalData").html() + `<div id="${"persona"+i}">` + div_content + "</div>");
+                }
+
+            });
+        });
+    </script>
+</body>
+
+</html>

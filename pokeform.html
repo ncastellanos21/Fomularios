@@ -1,0 +1,402 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@800&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inconsolata', monospace;
+    }
+
+    body {
+        display: flex;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+        background-image: url("img/pikachu.jpg");
+        font-size: 18px;
+        color: #f1f1f1;
+        margin: 50px;
+    }
+
+    .formContainer {
+        max-width: 1200px;
+        width: 100%;
+        background: #000000c0;
+        padding: 50px;
+        border-radius: 5px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    .formContainer .title {
+        color: #fff;
+        font-size: 45px;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .formContainer form .bloque,
+    .formContainer form .bloque2,
+    .formContainer form .bloque3 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    form .bloque2 .inputArea {
+        width: calc(100%/4 - 50px);
+    }
+
+    form .bloque3 .inputArea {
+        width: calc(100%/2 - 40px);
+        margin: 20px auto;
+    }
+
+    form .bloque .inputArea {
+        margin: 20px 0 12px 0;
+        width: calc(100%/3 - 20px);
+    }
+
+
+    .bloque .inputArea input,
+    .bloque2 .inputArea input {
+        margin-top: 6px;
+        height: 40px;
+        width: 100%;
+        outline: none;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        padding: 0px 10px;
+        color: #dbd4d4;
+        font-size: 16px;
+        background-color: rgba(230, 230, 230, 0);
+    }
+
+    form .bloque #largeMail {
+        margin: 20px 0 12px 0;
+        width: calc(100%/3 - 4px);
+        color: #dbd4d4;
+        font-size: 16px;
+    }
+
+    .bloque #largeMail input {
+        margin-top: 5px;
+        height: 40px;
+        width: 200%;
+        outline: none;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        padding: 0px 10px;
+        background-color: rgba(230, 230, 230, 0);
+        font-size: 16px;
+    }
+
+    .bloque3 textarea {
+        resize: none;
+        height: 120px;
+        width: 100%;
+        outline: none;
+        border-radius: 3px;
+        color: #ccc;
+        border: 1px solid #ccc;
+        padding: 10px;
+        background-color: rgb(230, 230, 230, 0);
+        margin-top: 5px;
+        font-size: 16px;
+    }
+
+    select {
+        background: transparent;
+        border: 1.2px solid white;
+        color: #a39393;
+        font-size: 15px;
+        height: 30px;
+        padding: 5px;
+        width: 250px;
+        margin-top: 5px;
+    }
+
+    input[type="radio"] {
+        height: auto;
+        margin: 5px;
+    }
+
+    #town_div {
+        margin-left: 314px;
+        margin-bottom: 30px;
+    }
+
+    .bloque label {
+        display: inline-block;
+    }
+
+    p {
+        font-size: 14px;
+        color: rgb(231, 126, 107);
+        margin: 0 0 0 0;
+    }
+
+    .title-2 {
+        margin-top: 35px;
+        margin-bottom: 10px;
+        border-bottom: 2px solid rgba(92, 201, 228, 0.849);
+        width: 100%;
+        color: rgb(123, 206, 227);
+        font-size: 20px;
+    }
+
+    button {
+        margin: 20px auto;
+        width: 600px;
+        height: 50px;
+        margin: 50px calc(100%/2 - 300px) 0;
+        overflow: hidden;
+        text-align: center;
+        background-color: #65a0d3;
+        font-size: 18px;
+        border: 0;
+        cursor: pointer;
+    }
+
+    button:hover {
+        box-shadow: rgba(19, 192, 236, 0.658) 0px 0px 15px;
+        background-color: #784ebb;
+        pointer-events: fill;
+        font-size: 20px;
+    }
+
+    p, #rep-legal {
+        display:none;
+    }
+</style>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <title>POKEFORM</title>
+    <link rel="shortcut icon" href="img/charmander.png">
+</head>
+
+<body>
+    <div class="formContainer">
+        <div class="title">Conviértete en entrenador Pokemon</div>
+        <form action="" id="pokeForm">
+            <div class="bloque">
+                <div class="title-2">Información personal</div>
+                <div class="inputArea">
+                    <label for="nombre">Nombre:</label>
+                    <p id="errorNom">Este campo solo puede contener caracteres de la A-Z y a-z</p>
+                    <input type="text" id="nombre" placeholder="Escribe un nombre"><br>
+                </div>
+                <div class="inputArea">
+                    <label for="lastname">Apellidos:</label>
+                    <p id="errorApellido">Este campo solo puede contener caracteres de la A-Z y a-z</p>
+                    <input type="text" name="apellido" id="apellido" placeholder="Escribe un apellido"><br>
+                </div>
+
+                <div class="inputArea">
+                    <label for="lastname">DNI:</label>
+                    <p id="errorDNI">El DNI es invalido.</p>
+                    <input type="text" name="dni" id="dni" maxlength="9" placeholder="Escribe tu DNI"><br>
+                </div>
+
+                <div class="inputArea">
+                    <label for="adress">Dirección:</label>
+                    <input type="text" name="adress" id="adress" placeholder="Escribe tu dirección"><br>
+                </div>
+
+                <div class="inputArea">
+                    <label for="age">Edad:</label>
+                    <p id="errorEdad">Este campo solo puede contener números del 0-9.</p>
+                    <input type="age" name="age" id="age" placeholder="Escribe tu edad"><br>
+                </div>
+
+                <div class="inputArea">
+                    <label for="phone">Telefono:</label>
+                    <p id="errorPhone">Este campo solo puede contener números del 0-9.</p>
+                    <input type="phone" name="phone" id="phone" placeholder="Escribe tu numero"><br>
+                </div>
+
+                <div id="largeMail">
+                    <label for="email">Correo:</label>
+                    <p id="errorEmail">Este correo no es válido (example:user@.gmail.com)</p>
+                    <input type="text" name="email" id="email" placeholder="Escribe un correo electrónico"><br><br>
+                </div>
+            </div>
+            <div class="bloque" id="rep-legal">
+                <div class="title-2">Información representante legal</div>
+                <div class="inputArea">
+                    <label for="nombre">Nombre:</label>
+                    <p id="errorNom">Este campo solo puede contener caracteres de la A-Z y a-z</p>
+                    <input type="text" id="nombre" placeholder="Escribe un nombre"><br>
+                </div>
+                <div class="inputArea">
+                    <label for="lastname">Apellidos:</label>
+                    <p id="errorApellido">Este campo solo puede contener caracteres de la A-Z y a-z</p>
+                    <input type="text" name="apellido" id="apellido" placeholder="Escribe un apellido"><br>
+                </div>
+
+                <div class="inputArea">
+                    <label for="lastname">DNI:</label>
+                    <p id="errorDNI">El DNI es invalido.</p>
+                    <input type="text" name="dni" id="dni" maxlength="9" placeholder="Escribe tu DNI"><br>
+                </div>
+            </div>
+
+            <div class="bloque" id="pokemon-select">
+                <div class="title-2">Mi Pokemon</div>
+                <div class="radio-buttons">
+                    <input type="radio" id="pok1" name="pokemon" value="img/pikachu.png">
+                    <label for="pok1">Pikachu</label><br>
+                    <input type="radio" id="pok2" name="pokemon" value="img/charmander128.png">
+                    <label for="pok2">Charmander</label><br>
+                    <input type="radio" id="pok3" name="pokemon" value="img/squirtle.png">
+                    <label for="pok3">Squirtle</label><br>
+                    <input type="radio" id="pok4" name="pokemon" value="img/bulbasaur.png">
+                    <label for="pok4">Bulbasaur</label>
+                </div>
+
+                <div class="inputArea">
+                    <img id="miPok" src="" alt="">
+                </div>
+
+                <div class="inputArea">
+                    <label for="town">Ciudad de Origen</label>
+                    <select id="town" name="towns">
+                        <option value="img/paleta.png">Pueblo Paleta</option>
+                        <option value="img/kanto.png">Kanto</option>
+                        <option value="img/hoenn.png">Hoenn</option>
+                        <option value="img/sinnoh.png">Sinnoh</option>
+                        <option value="img/unova.png">Unova o Teselia</option>
+                        <option value="img/kalos.png">Kalos</option>
+                        <option value="img/alola.png">Alola</option>
+                    </select>
+                </div>
+
+                <div class="inputArea" id="town_div">
+                    <img id="myTown" src="" alt="">
+                </div>
+            </div>
+
+            <div class="bloque2" id="rows-4">
+                <div class="title-2">Estado físico</div>
+                <div class="radio-buttons">
+                    <br><label>Haces algún deporte?</label><br>
+                    <input type="radio" id="wk-yes" name="workout" value="1">
+                    <label for="wk-yes">Yes</label><br>
+                    <input type="radio" id="wk-no" name="workout" value="0">
+                    <label for="wk-no">No</label><br>
+                </div>
+                <div class="inputArea">
+                    <label for="peso">Peso (kg):</label>
+                    <p id="errorPeso">Este campo solo puede contener números.</p>
+                    <input type="number" name="peso" id="peso" placeholder="Escribe tu peso en kilogramos"><br>
+                </div>
+                <div class="inputArea">
+                    <label for="altura">Altura (m):</label>
+                    <p id="errorAltura">Este campo solo puede contener números.</p>
+                    <input type="number" name="altura" id="altura" placeholder="Escribe tu altura en centímetros"><br>
+                </div>
+                <div class="inputArea">
+                    <label for="pasos">Pasos diarios (aprox):</label>
+                    <p id="errorPasos">Este campo solo puede contener números.</p>
+                    <input type="pasos" name="pasos" id="pasos" placeholder="Escribe tus pasos diarios"><br>
+                </div>
+            </div>
+
+            <div class="bloque3" id="rows-4">
+                <div class="title-2">Test psicológico</div>
+                <div class="inputArea">
+                    <label for="know">¿Sabías algo de los pokémons antes?</label><br>
+                    <textarea type="text" name="know" id="know" placeholder="Escribe tu respuesta..."></textarea>
+                </div>
+                <div class="inputArea">
+                    <label for="know">¿Qué tipo de pokémon te gusta más?</label><br>
+                    <textarea type="text" name="know" id="know" placeholder="Escribe tu respuesta..."></textarea>
+                </div>
+                <div class="inputArea">
+                    <label for="know">¿Qué harías si tu pokémon se queda sin energía?</label><br>
+                    <textarea type="text" name="know" id="know" placeholder="Escribe tu respuesta..."></textarea>
+                </div>
+                <div class="inputArea">
+                    <label for="know">¿Quñe es un centro pokémon?</label><br>
+                    <textarea type="text" name="know" id="know" placeholder="Escribe tu respuesta..."></textarea>
+                </div>
+            </div>
+
+            <button type="submit">Enviar CV</button>
+    </div>
+    </form>
+    </div>
+    <script>
+        function isValidForm() {
+            valido = true;
+
+            valido = validatePersonalData();
+            console.log(valido);
+
+            return valido;
+        }
+
+        function validatePersonalData() {
+            if ($("#nombre").val() == '') {
+                $("#nombre").css('box-shadow', "rgba(226, 12, 12, 0.804) 0px 5px 15px");
+                valid = false;
+            } else {
+                if (checkStr($("#nombre").val()) == true) {
+                    $("#nombre").css('border', "1px solid green");
+                    $("#errorNom").css('display', "none");
+                } else if (checkStr($("#nombre").val()) == false) {
+                    valid = false;
+                    $("#nombre").css('border', "2px solid orange");
+                    $("#errorNom").css('display', "block");
+                }
+            }
+
+            return valid;
+        }
+
+        $(document).ready(function () {
+            //Comprobar edad: muestra sección datos de encargado legal
+            $("#age").blur(function () {
+                let edad = parseInt($("#age").val());
+                console.log("edad");
+                if (edad < 18) {
+                    $("#rep-legal").css('display', "block");
+                } else {
+                    $("#rep-legal").css('display', "none");
+                }
+            });
+
+            //Mostrar imagen del pokemon
+            $('input[name="pokemon"]').click(function () {
+                var imagenURL = $(this).val();
+                $('#miPok').attr('src', imagenURL);
+            });
+            //Mostrar imagen del pueblo
+            $('#town').change(function () {
+                var imagenURL = $(this).val();
+                $('#myTown').attr('src', imagenURL);
+                $('#myTown').css('box-shadow', "rgba(19, 192, 236, 0.658) 0px 5px 15px");
+            });
+            //Efecto del backgroun
+            $("input, textarea").focus(function () {
+                $(this).css('box-shadow', "rgba(19, 192, 236, 0.658) 0px 5px 15px");
+            });
+            $("input, textarea").blur(function () {
+                $(this).css('box-shadow', "0 0");
+            });
+
+            //PRINCIPAL FUNCTION VALIDATE
+            $("#pokeForm").submit(function () {
+                return isValidForm();
+            });
+        });
+    </script>
+</body>
+
+</html>
