@@ -54,99 +54,62 @@
                         <option value="bilbao">Bilbao</option>
                     </select>
                 </div>
+                <div class="inputArea">
+                    <label for="numTick">Nº de Tickets:</label>
+                    <select name="numTick" id="numTick">
+                        <option value="1" selected>1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div><br>
+            </div><br>
 
-                <div class="inputArea">
-                    <label for="date_salida">Fecha de salida:</label>
-                    <input type="date" name="date_salida" id="date_salida">
+            <div id="personalData">
+                <div id="form1">
+                    <div class="title2">Datos personales persona 1</div>
+                    <div class="inputArea">
+                        <label for="nombre-1">Nombre:</label>
+                        <p id="errorNom-1">Este campo solo puede contener caracteres de la A-Z y a-z</p>
+                        <input type="text" id="nombre" placeholder="Escribe un nombre"><br>
+                    </div><br>
+
+                    <div class="inputArea">
+                        <label for="apellido-1">Apellidos:</label>
+                        <p id="errorApellido-1">Este campo solo puede contener caracteres de la A-Z y a-z</p>
+                        <input type="text" name="apellido" id="apellido-1" placeholder="Escribe un apellido"><br>
+                    </div><br>
+
+                    <div class="inputArea">
+                        <label for="dni-1">DNI:</label>
+                        <p id="errorDNI-1">El DNI es invalido.</p>
+                        <input type="text" name="dni" id="dni-1" maxlength="9" placeholder="Escribe tu DNI"><br>
+                    </div><br>
+
+                    <div class="inputArea">
+                        <label for="adress-1">Dirección:</label>
+                        <input type="text" name="adress" id="adress-1" placeholder="Escribe tu dirección"><br>
+                    </div><br>
+
+                    <div class="inputArea">
+                        <label for="cp-1">CP:</label>
+                        <p id="errorPhone-1">Este campo solo puede contener números.</p>
+                        <input type="number" name="cp" id="cp-1" placeholder="Escribe tu codigo postal"><br>
+                    </div><br>
+
+                    <div class="inputArea">
+                        <label for="age-1">Edad:</label>
+                        <p id="errorEdad-1">Este campo solo puede contener números.</p>
+                        <input type="number" name="age" id="age-1" placeholder="Escribe tu edad"><br>
+                    </div><br>
                 </div>
-                <div class="inputArea">
-                    <label for="date_llegada">Fechas de regreso:</label>
-                    <input type="date" name="date_llegada" id="date_llegada">
-                </div>
+                <div id="extraPersons"></div>
             </div>
-            <div class="inputArea">
-                <label for="numTick">Nº de Tickets:</label>
-                <select name="numTick" id="numTick">
-                    <option value="1" selected>1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
-            </div><br>
-    </div><br>
-
-    <div id="personalData">
-        <div id="form1">
-            <div class="title2">Datos personales persona 1</div>
-            <div class="inputArea">
-                <label for="nombre-1">Nombre:</label>
-                <p id="errorNom-1">Este campo solo puede contener caracteres de la A-Z y a-z</p>
-                <input type="text" id="nombre" placeholder="Escribe un nombre"><br>
-            </div><br>
-
-            <div class="inputArea">
-                <label for="apellido-1">Apellidos:</label>
-                <p id="errorApellido-1">Este campo solo puede contener caracteres de la A-Z y a-z</p>
-                <input type="text" name="apellido" id="apellido-1" placeholder="Escribe un apellido"><br>
-            </div><br>
-
-            <div class="inputArea">
-                <label for="dni-1">DNI:</label>
-                <p id="errorDNI-1">El DNI es invalido.</p>
-                <input type="text" name="dni" id="dni-1" maxlength="9" placeholder="Escribe tu DNI"><br>
-            </div><br>
-
-            <div class="inputArea">
-                <label for="adress-1">Dirección:</label>
-                <input type="text" name="adress" id="adress-1" placeholder="Escribe tu dirección"><br>
-            </div><br>
-
-            <div class="inputArea">
-                <label for="cp-1">CP:</label>
-                <p id="errorPhone-1">Este campo solo puede contener números.</p>
-                <input type="number" name="cp" id="cp-1" placeholder="Escribe tu codigo postal"><br>
-            </div><br>
-
-            <div class="inputArea">
-                <label for="age-1">Edad:</label>
-                <p id="errorEdad-1">Este campo solo puede contener números.</p>
-                <input type="number" name="age" id="age-1" placeholder="Escribe tu edad"><br>
-            </div><br>
-        </div>
-        <div id="extraPersons"></div>
-    </div>
     </div>
 
     <!-- <div id="form_container"></div> -->
     </form>
     </div>
     <script>
-
-        function dateValidator() {
-            let today = new Date();
-
-            // Escuchar los cambios en los campos de fecha
-            $('#date_salida, #date_llegada').change(function() {
-                // Obtener las fechas de los campos de entrada
-                let fechaSalida = Date.parse($('#date_salida').val());
-                let fechaLlegada = Date.parse($('#date_llegada').val());
-
-                // Validar las fechas
-                if (fechaSalida >= fechaLlegada) {
-                    //TODO
-                    //.show(error)
-                    alert('La fecha de salida debe ser anterior a la fecha de llegada.');
-                    $('#date_salida').val('').focus();
-                } else if (fechaSalida < today || fechaLlegada < today) {
-                    //TODO
-                    //.show(error)
-                    alert('Las fechas deben ser superiores a la fecha actual.');
-                    $('#date_llegada').val('').focus();
-                } else {
-                    //TODO
-                }
-            });
-
-        }
 
         //Desabilitar el mismo value si en el select ya seleccionada
         function destinationDisable() {
@@ -158,8 +121,8 @@
 
             $('#destino').on('change', function () {
                 let selected = $(this).val();
-                $('#origen option').show();
-                $('#origen option[value="' + selected + '"]').hide();
+                $('#origen option').show(); 
+                $('#origen option[value="' + selected + '"]').hide(); 
             });
         }
 
@@ -192,16 +155,11 @@
 
         $(document).ready(function () {
 
-            // Inhabilitador de campos según elección de origen y destino
+            // inhabilitador de campos según elección de origen y destino
             destinationDisable();
-
             // Generador de formularios según el número de pasajeros del select
             formGenerator();
 
-            // Valida que que la fecha sea una correcta
-            dateValidator();
-
-            
         });
     </script>
 </body>
