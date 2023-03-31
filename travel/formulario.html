@@ -12,6 +12,43 @@
     #rep-legal {
         display: none;
     }
+
+    .asientos {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .filas {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 6px;
+    }
+
+    .left_rows{
+        margin-bottom: 25px;
+    }
+
+    .silla {
+        display: none;
+    }
+
+    .silla+span {
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+        background-color: #49bfe3;
+        margin-right: 20px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .silla:checked+span {
+        background-color: #27f947;
+    }
 </style>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +70,7 @@
                 <div class="inputArea">
                     <label for="origen">Ciudad de origen:</label>
                     <select name="origen" id="origen">
-                        <option value="0">select</option>
+                        <option value="0" selected disabled hidden>select</option>
                         <option value="barcelona">Barcelona</option>
                         <option value="madrid">Madrid</option>
                         <option value="valencia">Valencia</option>
@@ -45,7 +82,7 @@
                 <div class="inputArea">
                     <label for="destino">Ciudad de origen:</label>
                     <select name="destino" id="destino">
-                        <option value="0">select</option>
+                        <option value="0" selected disabled hidden>select</option>
                         <option value="barcelona">Barcelona</option>
                         <option value="madrid">Madrid</option>
                         <option value="valencia">Valencia</option>
@@ -66,54 +103,230 @@
             </div>
             <div class="inputArea">
                 <label for="numTick">Nº de Tickets:</label>
-                <select name="numTick" id="numTick">
+                <select name="numTick" id="numTick" value="1">
                     <option value="1" selected>1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                 </select>
             </div><br>
-    </div><br>
 
-    <div id="personalData">
-        <div id="form1">
-            <div class="title2">Datos personales persona 1</div>
-            <div class="inputArea">
-                <label for="nombre-1">Nombre:</label>
-                <p id="errorNom-1">Este campo solo puede contener caracteres de la A-Z y a-z</p>
-                <input type="text" id="nombre" placeholder="Escribe un nombre"><br>
-            </div><br>
+            <div class="asientos">
+                <div class="left_rows">
+                    <div class="filas">
+                        <label>
+                            <input type="checkbox" class="silla" value="1" />
+                            <span>1A</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="2" />
+                            <span>2A</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="3" />
+                            <span>3A</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="4" />
+                            <span>4A</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="1" />
+                            <span>5A</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="2" />
+                            <span>6A</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="3" />
+                            <span>7A</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="4" />
+                            <span>8A</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="2" />
+                            <span>9A</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="3" />
+                            <span>VA</span>
+                        </label>
+                    </div>
+                    <div class="filas">
+                        <label>
+                            <input type="checkbox" class="silla" value="1" />
+                            <span>1B</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="2" />
+                            <span>2B</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="3" />
+                            <span>3B</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="4" />
+                            <span>4B</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="1" />
+                            <span>5B</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="2" />
+                            <span>6B</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="3" />
+                            <span>7B</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="4" />
+                            <span>8B</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="2" />
+                            <span>9B</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="3" />
+                            <span>VB</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="right_rows">
+                    <div class="filas">
+                        <label>
+                            <input type="checkbox" class="silla" value="1" />
+                            <span>1C</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="2" />
+                            <span>2C</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="3" />
+                            <span>3C</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="4" />
+                            <span>4C</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="1" />
+                            <span>5C</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="2" />
+                            <span>6C</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="3" />
+                            <span>7C</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="4" />
+                            <span>8C</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="2" />
+                            <span>9C</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="3" />
+                            <span>VC</span>
+                        </label>
+                    </div>
+                    <div class="filas">
+                        <label>
+                            <input type="checkbox" class="silla" value="1" />
+                            <span>1D</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="2" />
+                            <span>2D</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="3" />
+                            <span>3D</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="4" />
+                            <span>4D</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="1" />
+                            <span>5D</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="2" />
+                            <span>6D</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="3" />
+                            <span>7D</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="4" />
+                            <span>8D</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="2" />
+                            <span>9D</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="silla" value="3" />
+                            <span>VD</span>
+                        </label>
+                    </div>
+                </div>
 
-            <div class="inputArea">
-                <label for="apellido-1">Apellidos:</label>
-                <p id="errorApellido-1">Este campo solo puede contener caracteres de la A-Z y a-z</p>
-                <input type="text" name="apellido" id="apellido-1" placeholder="Escribe un apellido"><br>
-            </div><br>
+            </div>
 
-            <div class="inputArea">
-                <label for="dni-1">DNI:</label>
-                <p id="errorDNI-1">El DNI es invalido.</p>
-                <input type="text" name="dni" id="dni-1" maxlength="9" placeholder="Escribe tu DNI"><br>
-            </div><br>
 
-            <div class="inputArea">
-                <label for="adress-1">Dirección:</label>
-                <input type="text" name="adress" id="adress-1" placeholder="Escribe tu dirección"><br>
-            </div><br>
+            <div id="personalData">
+                <div id="form1">
+                    <div class="title2">Datos personales persona 1</div>
+                    <div class="inputArea">
+                        <label for="nombre-1">Nombre:</label>
+                        <p id="errorNom-1">Este campo solo puede contener caracteres de la A-Z y a-z</p>
+                        <input type="text" id="nombre" placeholder="Escribe un nombre"><br>
+                    </div><br>
 
-            <div class="inputArea">
-                <label for="cp-1">CP:</label>
-                <p id="errorPhone-1">Este campo solo puede contener números.</p>
-                <input type="number" name="cp" id="cp-1" placeholder="Escribe tu codigo postal"><br>
-            </div><br>
+                    <div class="inputArea">
+                        <label for="apellido-1">Apellidos:</label>
+                        <p id="errorApellido-1">Este campo solo puede contener caracteres de la A-Z y a-z</p>
+                        <input type="text" name="apellido" id="apellido-1" placeholder="Escribe un apellido"><br>
+                    </div><br>
 
-            <div class="inputArea">
-                <label for="age-1">Edad:</label>
-                <p id="errorEdad-1">Este campo solo puede contener números.</p>
-                <input type="number" name="age" id="age-1" placeholder="Escribe tu edad"><br>
-            </div><br>
-        </div>
-        <div id="extraPersons"></div>
-    </div>
+                    <div class="inputArea">
+                        <label for="dni-1">DNI:</label>
+                        <p id="errorDNI-1">El DNI es invalido.</p>
+                        <input type="text" name="dni" id="dni-1" maxlength="9" placeholder="Escribe tu DNI"><br>
+                    </div><br>
+
+                    <div class="inputArea">
+                        <label for="adress-1">Dirección:</label>
+                        <input type="text" name="adress" id="adress-1" placeholder="Escribe tu dirección"><br>
+                    </div><br>
+
+                    <div class="inputArea">
+                        <label for="cp-1">CP:</label>
+                        <p id="errorPhone-1">Este campo solo puede contener números.</p>
+                        <input type="number" name="cp" id="cp-1" placeholder="Escribe tu codigo postal"><br>
+                    </div><br>
+
+                    <div class="inputArea">
+                        <label for="age-1">Edad:</label>
+                        <p id="errorEdad-1">Este campo solo puede contener números.</p>
+                        <input type="number" name="age" id="age-1" placeholder="Escribe tu edad"><br>
+                    </div><br>
+                </div>
+                <div id="extraPersons"></div>
+            </div>
     </div>
 
     <!-- <div id="form_container"></div> -->
@@ -121,11 +334,30 @@
     </div>
     <script>
 
+        function selectAsientos(){
+
+            let numTickets = 1;
+
+            $('#numTick').change(function() {
+                numTickets = parseInt($('#numTick').val());
+                console.log(numTickets); //borrar
+                $("input[type='checkbox']").prop("checked", false);
+            });
+
+
+            $('input[type="checkbox"]').change(function () {
+                let checkboxes = $('input[type="checkbox"]:checked');
+                if (checkboxes.length > numTickets) {
+                    this.checked = false;
+                }
+            });
+        }
+
         function dateValidator() {
             let today = new Date();
 
             // Escuchar los cambios en los campos de fecha
-            $('#date_salida, #date_llegada').change(function() {
+            $('#date_salida, #date_llegada').change(function () {
                 // Obtener las fechas de los campos de entrada
                 let fechaSalida = Date.parse($('#date_salida').val());
                 let fechaLlegada = Date.parse($('#date_llegada').val());
@@ -187,6 +419,8 @@
                     $('#form' + i + ' .title2').text(formTitle);
                 }
 
+                // selectAsientos();
+
             });
         }
 
@@ -201,7 +435,8 @@
             // Valida que que la fecha sea una correcta
             dateValidator();
 
-            
+            // Según el número de asientos seleccionados así mismo se pueden elegir los asientos
+            selectAsientos();
         });
     </script>
 </body>
