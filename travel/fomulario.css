@@ -3,12 +3,13 @@
     position: absolute;
     top: calc(100% + 5px);
     left: 50%;
-    transform: translateX(50%);
+    transform: translateX(-30%) translateY(-200%);
     background-color: #000;
+    font-size: 28px;
     color: #fff;
     padding: 5px;
     font-size: 0.8em;
-    height: 40px;
+    height: auto;
     width: 150px;
 }
 
@@ -19,8 +20,6 @@ label {
 input[type="radio"]:hover+.tooltip {
     display: block;
 }
-
-
 
 
 #title {
