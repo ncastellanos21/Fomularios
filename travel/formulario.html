@@ -1,4 +1,29 @@
 <style>
+    .tooltip {
+        display: none;
+        position: absolute;
+        top: calc(100% + 5px);
+        left: 50%;
+        transform: translateX(50%);
+        background-color: #000;
+        color: #fff;
+        padding: 5px;
+        font-size: 0.8em;
+        height: 40px;
+        width: 150px;
+    }
+
+    label {
+        position: relative;
+    }
+
+    input[type="radio"]:hover+.tooltip {
+        display: block;
+    }
+
+
+
+
     #title {
         font-size: 38px;
         text-align: center;
@@ -11,6 +36,10 @@
     #daySteps,
     #rep-legal {
         display: none;
+    }
+
+    .form-box {
+        margin-bottom: 40px;
     }
 
     .asientos {
@@ -28,7 +57,7 @@
         margin-bottom: 6px;
     }
 
-    .left_rows{
+    .left_rows {
         margin-bottom: 25px;
     }
 
@@ -37,8 +66,11 @@
     }
 
     .silla+span {
-        width: 25px;
-        height: 25px;
+        width: 20px;
+        height: 20px;
+        border-style: double solid double;
+        border-color: rgb(44, 20, 124);
+        border-width: 4px 10px 4px 0;
         display: inline-block;
         background-color: #49bfe3;
         margin-right: 20px;
@@ -47,7 +79,7 @@
     }
 
     .silla:checked+span {
-        background-color: #27f947;
+        background-color: #44ed5d;
     }
 </style>
 <!DOCTYPE html>
@@ -66,7 +98,7 @@
     <div id="form_container">
         <div id="title">Naomy Ruiz Airlines</div>
         <form action="" id="airlineForm">
-            <div id="ticketsData">
+            <div class="form-box">
                 <div class="inputArea">
                     <label for="origen">Ciudad de origen:</label>
                     <select name="origen" id="origen">
@@ -100,194 +132,212 @@
                     <label for="date_llegada">Fechas de regreso:</label>
                     <input type="date" name="date_llegada" id="date_llegada">
                 </div>
+                <div class="inputArea">
+                    <label for="numTick">Nº de Tickets:</label>
+                    <select name="numTick" id="numTick" value="1">
+                        <option value="1" selected>1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div><br>
             </div>
-            <div class="inputArea">
-                <label for="numTick">Nº de Tickets:</label>
-                <select name="numTick" id="numTick" value="1">
-                    <option value="1" selected>1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
-            </div><br>
-
-            <div class="asientos">
-                <div class="left_rows">
-                    <div class="filas">
-                        <label>
-                            <input type="checkbox" class="silla" value="1" />
-                            <span>1A</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="2" />
-                            <span>2A</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="3" />
-                            <span>3A</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="4" />
-                            <span>4A</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="1" />
-                            <span>5A</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="2" />
-                            <span>6A</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="3" />
-                            <span>7A</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="4" />
-                            <span>8A</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="2" />
-                            <span>9A</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="3" />
-                            <span>VA</span>
-                        </label>
+            <div class="form-box">
+                <div class="asientos">
+                    <div class="left_rows">
+                        <div class="filas">
+                            <label>
+                                <input type="checkbox" class="silla" value="1" />
+                                <span>1A</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="2" />
+                                <span>2A</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="3" />
+                                <span>3A</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="4" />
+                                <span>4A</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="1" />
+                                <span>5A</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="2" />
+                                <span>6A</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="3" />
+                                <span>7A</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="4" />
+                                <span>8A</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="2" />
+                                <span>9A</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="3" />
+                                <span>VA</span>
+                            </label>
+                        </div>
+                        <div class="filas">
+                            <label>
+                                <input type="checkbox" class="silla" value="1" />
+                                <span>1B</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="2" />
+                                <span>2B</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="3" />
+                                <span>3B</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="4" />
+                                <span>4B</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="1" />
+                                <span>5B</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="2" />
+                                <span>6B</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="3" />
+                                <span>7B</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="4" />
+                                <span>8B</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="2" />
+                                <span>9B</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="3" />
+                                <span>VB</span>
+                            </label>
+                        </div>
                     </div>
-                    <div class="filas">
-                        <label>
-                            <input type="checkbox" class="silla" value="1" />
-                            <span>1B</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="2" />
-                            <span>2B</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="3" />
-                            <span>3B</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="4" />
-                            <span>4B</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="1" />
-                            <span>5B</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="2" />
-                            <span>6B</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="3" />
-                            <span>7B</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="4" />
-                            <span>8B</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="2" />
-                            <span>9B</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="3" />
-                            <span>VB</span>
-                        </label>
+                    <div class="right_rows">
+                        <div class="filas">
+                            <label>
+                                <input type="checkbox" class="silla" value="1" />
+                                <span>1C</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="2" />
+                                <span>2C</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="3" />
+                                <span>3C</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="4" />
+                                <span>4C</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="1" />
+                                <span>5C</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="2" />
+                                <span>6C</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="3" />
+                                <span>7C</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="4" />
+                                <span>8C</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="2" />
+                                <span>9C</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="3" />
+                                <span>VC</span>
+                            </label>
+                        </div>
+                        <div class="filas">
+                            <label>
+                                <input type="checkbox" class="silla" value="1" />
+                                <span>1D</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="2" />
+                                <span>2D</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="3" />
+                                <span>3D</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="4" />
+                                <span>4D</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="1" />
+                                <span>5D</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="2" />
+                                <span>6D</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="3" />
+                                <span>7D</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="4" />
+                                <span>8D</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="2" />
+                                <span>9D</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" class="silla" value="3" />
+                                <span>VD</span>
+                            </label>
+                        </div>
                     </div>
                 </div>
-                <div class="right_rows">
-                    <div class="filas">
-                        <label>
-                            <input type="checkbox" class="silla" value="1" />
-                            <span>1C</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="2" />
-                            <span>2C</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="3" />
-                            <span>3C</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="4" />
-                            <span>4C</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="1" />
-                            <span>5C</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="2" />
-                            <span>6C</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="3" />
-                            <span>7C</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="4" />
-                            <span>8C</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="2" />
-                            <span>9C</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="3" />
-                            <span>VC</span>
-                        </label>
-                    </div>
-                    <div class="filas">
-                        <label>
-                            <input type="checkbox" class="silla" value="1" />
-                            <span>1D</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="2" />
-                            <span>2D</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="3" />
-                            <span>3D</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="4" />
-                            <span>4D</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="1" />
-                            <span>5D</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="2" />
-                            <span>6D</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="3" />
-                            <span>7D</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="4" />
-                            <span>8D</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="2" />
-                            <span>9D</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" class="silla" value="3" />
-                            <span>VD</span>
-                        </label>
-                    </div>
-                </div>
 
+                <div class="inputArea">
+                    <label>
+                        <input type="radio" name="ticket-type" value="standard" data-tooltip="Incluye: solo el equipaje de cabina">
+                        Estándard
+                        <span class="tooltip"></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="ticket-type" value="preferent" data-tooltip="Incluye: maleta de viaje hasta 10KG">
+                        Preferente
+                        <span class="tooltip"></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="ticket-type" value="premium" data-tooltip="Incluye: asiento premium, maleta de viaje hasta 10KG y otra facturable">
+                        Premium
+                        <span class="tooltip"></span>
+                    </label>
+                </div>
             </div>
 
 
-            <div id="personalData">
+            <div class="form-box">
                 <div id="form1">
                     <div class="title2">Datos personales persona 1</div>
                     <div class="inputArea">
@@ -327,6 +377,7 @@
                 </div>
                 <div id="extraPersons"></div>
             </div>
+
     </div>
 
     <!-- <div id="form_container"></div> -->
@@ -334,11 +385,21 @@
     </div>
     <script>
 
-        function selectAsientos(){
+        function showTooltip() {
+            $("input[type='radio']").hover(function () {
+                var tooltipText = $(this).data("tooltip");
+                $(this).next(".tooltip").text(tooltipText);
+            }, function () {
+                $(this).next(".tooltip").text("");
+            });
+        }
+
+
+        function selectAsientos() {
 
             let numTickets = 1;
 
-            $('#numTick').change(function() {
+            $('#numTick').change(function () {
                 numTickets = parseInt($('#numTick').val());
                 console.log(numTickets); //borrar
                 $("input[type='checkbox']").prop("checked", false);
@@ -437,6 +498,9 @@
 
             // Según el número de asientos seleccionados así mismo se pueden elegir los asientos
             selectAsientos();
+
+            // Muestra cuando haces hover el tooltipe
+            showTooltip();
         });
     </script>
 </body>

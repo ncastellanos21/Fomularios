@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <style>
-.tooltip {
+.standarTp {
   position: relative;
   display: inline-block;
   border-bottom: 1px dotted black;
 }
 
-.tooltip .tooltiptext {
+.standarTp .standarTptext {
   visibility: hidden;
   width: 120px;
   background-color: #555;
@@ -24,7 +24,7 @@
   transition: opacity 0.3s;
 }
 
-.tooltip .tooltiptext::after {
+.standarTp .standarTptext::after {
   content: "";
   position: absolute;
   top: 100%;
@@ -35,18 +35,18 @@
   border-color: #555 transparent transparent transparent;
 }
 
-.tooltip:hover .tooltiptext {
+.standarTp:hover .standarTptext {
   visibility: visible;
   opacity: 1;
 }
 </style>
 <body style="text-align:center;">
 
-<h2>Tooltip</h2>
+<h2>standarTp</h2>
 <p>Move the mouse over the text below:</p>
 
-<div class="tooltip">Hover over me
-  <span class="tooltiptext">Tooltip text</span>
+<div class="standarTp">Hover over me
+  <span class="standarTptext">standarTp text</span>
 </div>
 
 </body>
