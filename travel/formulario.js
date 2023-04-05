@@ -54,6 +54,18 @@ function dateValidator() {
 
 }
 
+function specialNeed() {
+    $('#special_text').hide();
+
+    $('input[name="special"]').click(function () {
+        if ($(this).val() == 1) {
+            $('#special_text').show();
+        } else {
+            $('#special_text').hide();
+        }
+    });
+}
+
 //Desabilitar el mismo value si en el select ya seleccionada
 function destinationDisable() {
     $('#origen').on('change', function () {
@@ -98,6 +110,29 @@ function formGenerator() {
     });
 }
 
+
+function validateDNI(dni, valid) {
+    dni = dni.toUpperCase();
+    let letrasValidas = 'TRWAGMYFPDXBNJZSQVHLCKET';
+    let calculoLetra = letrasValidas[dni.slice(0, 8) % 23];
+    if (dni.slice(8, 9) == calculoLetra) valid = true;
+    else valid = false;
+    return valid;
+}
+
+function checkStr(cadena) {
+    return /^[a-zA-Z\s-]+$/.poke_form(cadena);
+}
+
+function checkEmail(email) {
+    return /\S+@\S+\.\S+/.poke_form(email);
+}
+
+function checkNums(num) {
+    return /^[0-9\s-]+$/.poke_form(num);
+}
+
+
 $(document).ready(function () {
 
     // Inhabilitador de campos según elección de origen y destino
@@ -114,4 +149,13 @@ $(document).ready(function () {
 
     // Muestra cuando haces hover el tooltipe
     showTooltip();
+
+    // Vontrola el textarea de necesidades especiales
+    specialNeed();
+
+    // Controla que los datos insertados sean válidos
+    // $("#airlineForm").submit(function () {
+    //     return isValidForm();
+    // });
+
 });

@@ -240,7 +240,7 @@
                 <div class="inputArea">
                     <label>
                         <input type="radio" name="ticket-type" value="standard"
-                        data-tooltip="Incluye: solo el equipaje de cabina">
+                            data-tooltip="Incluye: solo el equipaje de cabina">
                         Estándard
                         <span class="tooltip"></span>
                     </label>
@@ -256,6 +256,19 @@
                         Premium
                         <span class="tooltip"></span>
                     </label>
+                </div>
+
+                <div class="inputArea">
+                    <div class="title2">¿Tienes alguna necesidad especial?</div>
+                    <label>
+                        <input type="radio" name="special" value="1">
+                        Si
+                    </label>
+                    <label>
+                        <input type="radio" name="special" value="0">
+                        No
+                    </label><br>
+                    <textarea id="special_text">Especifica tu tipo de necesidad especial</textarea>
                 </div>
             </div>
 
@@ -300,6 +313,7 @@
                 </div>
                 <div id="extraPersons"></div>
             </div>
+            <button type="submit">Enviar</button>
         </form>
     </div>
 

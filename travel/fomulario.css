@@ -21,7 +21,6 @@ input[type="radio"]:hover+.tooltip {
     display: block;
 }
 
-
 #title {
     font-size: 38px;
     text-align: center;
