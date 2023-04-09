@@ -14,7 +14,6 @@ function selectAsientos() {
 
     $('#numTick').change(function () {
         numTickets = parseInt($('#numTick').val());
-        console.log(numTickets); //borrar
         $("input[type='checkbox']").prop("checked", false);
     });
 
@@ -47,6 +46,7 @@ function dateValidator() {
             //.show(error)
             alert('Las fechas deben ser superiores a la fecha actual.');
             $('#date_llegada').val('').focus();
+            $('#date_salida').val('').focus();
         } else {
             //TODO
         }
@@ -89,14 +89,15 @@ function formGenerator() {
         // Eliminar los formularios existentes
         $('#extraPersons').empty();
 
-        // Generador de formularios dinámicamente
+        // Generador de formularios dinámicamentes
         for (let i = 2; i <= numTickets + 1; i++) {
             // Crear un nuevo div para el formulario
-            let formContainer = $('<div>');
+            let formContainer = $('<div class="personalDataSection">');
             formContainer.attr('id', 'form' + i);
 
             // Copiar el HTML del formulario
-            let formHtml = $('#form1').html();
+            let formHtml = $('#p1').html();
+            console.log(formHtml);
             formContainer.html(formHtml);
 
             // Agregar el nuevo formulario al contenedor de formularios
@@ -132,6 +133,11 @@ function checkNums(num) {
     return /^[0-9\s-]+$/.poke_form(num);
 }
 
+function isValidForm() {
+    let valid = true;
+    console.log("ValidatorForm = " + valid)
+    return valid;
+}
 
 $(document).ready(function () {
 
@@ -154,8 +160,16 @@ $(document).ready(function () {
     specialNeed();
 
     // Controla que los datos insertados sean válidos
-    // $("#airlineForm").submit(function () {
-    //     return isValidForm();
-    // });
+    $("#airlineForm").submit(function () {
+        // Esconde el formulario y enseña la frase señalada
+        let done = isValidForm();
+        if (done) {
+            let msj = $("#sub_msj").html();
+            $("#sub_msj").html('Sus tickets llegaran a su correo principal.');
+            console.log("Submit msj = " + msj);
+            $("form").hide();
+        }
+        event.preventDefault();
+    });
 
 });

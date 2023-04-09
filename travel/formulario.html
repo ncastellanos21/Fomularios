@@ -15,12 +15,13 @@
 </head>
 
 <body>
-    <div id="form_container">
-        <div id="title">Naomy Ruiz Airlines</div>
+    <div class="form_container">
+        <div class="title" id="sub_msj">Naomy Ruiz Airlines</div>
         <form action="" id="airlineForm">
             <div class="form-box">
+                <div class="title2">Datos del vuelo</div>
                 <div class="inputArea">
-                    <label for="origen">Ciudad de origen:</label>
+                    <label for="origen" class="title3">Ciudad de origen:</label>
                     <select name="origen" id="origen">
                         <option value="0" selected disabled hidden>select</option>
                         <option value="barcelona">Barcelona</option>
@@ -32,7 +33,7 @@
                     </select>
                 </div>
                 <div class="inputArea">
-                    <label for="destino">Ciudad de origen:</label>
+                    <label for="destino" class="title3">Ciudad de origen:</label>
                     <select name="destino" id="destino">
                         <option value="0" selected disabled hidden>select</option>
                         <option value="barcelona">Barcelona</option>
@@ -45,15 +46,15 @@
                 </div>
 
                 <div class="inputArea">
-                    <label for="date_salida">Fecha de salida:</label>
+                    <label for="date_salida" class="title3">Fecha de salida:</label>
                     <input type="date" name="date_salida" id="date_salida">
                 </div>
                 <div class="inputArea">
-                    <label for="date_llegada">Fechas de regreso:</label>
+                    <label for="date_llegada" class="title3">Fechas de regreso:</label>
                     <input type="date" name="date_llegada" id="date_llegada">
                 </div>
                 <div class="inputArea">
-                    <label for="numTick">Nº de Tickets:</label>
+                    <label for="numTick" class="title3">Nº de Tickets:</label>
                     <select name="numTick" id="numTick" value="1">
                         <option value="1" selected>1</option>
                         <option value="2">2</option>
@@ -62,7 +63,9 @@
                 </div><br>
             </div>
             <div class="form-box">
-                <div class="asientos">
+                <div class="title2">Datos del vuelo</div>
+                <div class="inputArea" id="seat-map">
+                    <div class="title3">Elige tu asiento</div>
                     <div class="left_rows">
                         <div class="filas">
                             <label>
@@ -236,8 +239,21 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
+            <div class="form-box">
+                <div class="inputArea, radioIn">
+                    <div class="title3">¿Tienes alguna necesidad especial?</div>
+                    <label>Si
+                        <input type="radio" name="special" value="1">
+                    </label>
+                    <label>No
+                        <input type="radio" name="special" value="0">
+                    </label><br>
+                </div>
+                <div class="radioIn"><textarea id="special_text" placeholder="Especifica tu necesidad especial"></textarea></div>
                 <div class="inputArea">
+                    <div class="title3">Tipo de ticket</div>
                     <label>
                         <input type="radio" name="ticket-type" value="standard"
                             data-tooltip="Incluye: solo el equipaje de cabina">
@@ -257,62 +273,47 @@
                         <span class="tooltip"></span>
                     </label>
                 </div>
+            </div>
+
+            <div class="personalDataSection" id="p1">
+                <div class="title2">Datos personales persona 1</div>
+                <div class="inputArea">
+                    <label for="nombre" class="title3">Nombre:</label>
+                    <p id="errorNom">Este campo solo puede contener caracteres de la A-Z y a-z</p>
+                    <input type="text" id="nombre" placeholder="Escribe un nombre"><br>
+                </div><br>
 
                 <div class="inputArea">
-                    <div class="title2">¿Tienes alguna necesidad especial?</div>
-                    <label>
-                        <input type="radio" name="special" value="1">
-                        Si
-                    </label>
-                    <label>
-                        <input type="radio" name="special" value="0">
-                        No
-                    </label><br>
-                    <textarea id="special_text">Especifica tu tipo de necesidad especial</textarea>
-                </div>
+                    <label for="apellido" class="title3">Apellidos:</label>
+                    <p id="errorApellido">Este campo solo puede contener caracteres de la A-Z y a-z</p>
+                    <input type="text" name="apellido" id="apellido" placeholder="Escribe un apellido"><br>
+                </div><br>
+
+                <div class="inputArea">
+                    <label for="dni" class="title3">DNI:</label>
+                    <p id="errorDNI">El DNI es invalido.</p>
+                    <input type="text" name="dni" id="dni" maxlength="9" placeholder="Escribe tu DNI"><br>
+                </div><br>
+
+                <div class="inputArea">
+                    <label for="adress">Dirección:</label>
+                    <input type="text" name=
+                    "adress" id="adress" placeholder="Escribe tu dirección"><br>
+                </div><br>
+
+                <div class="inputArea">
+                    <label for="cp">CP:</label>
+                    <p id="errorPhone">Este campo solo puede contener números.</p>
+                    <input type="number" name="cp" id="cp" placeholder="Escribe tu codigo postal"><br>
+                </div><br>
+
+                <div class="inputArea">
+                    <label for="age">Edad:</label>
+                    <p id="errorEdad">Este campo solo puede contener números.</p>
+                    <input type="number" name="age" id="age" placeholder="Escribe tu edad"><br>
+                </div><br>
             </div>
-
-
-            <div class="form-box">
-                <div id="form1">
-                    <div class="title2">Datos personales persona 1</div>
-                    <div class="inputArea">
-                        <label for="nombre-1">Nombre:</label>
-                        <p id="errorNom-1">Este campo solo puede contener caracteres de la A-Z y a-z</p>
-                        <input type="text" id="nombre" placeholder="Escribe un nombre"><br>
-                    </div><br>
-
-                    <div class="inputArea">
-                        <label for="apellido-1">Apellidos:</label>
-                        <p id="errorApellido-1">Este campo solo puede contener caracteres de la A-Z y a-z</p>
-                        <input type="text" name="apellido" id="apellido-1" placeholder="Escribe un apellido"><br>
-                    </div><br>
-
-                    <div class="inputArea">
-                        <label for="dni-1">DNI:</label>
-                        <p id="errorDNI-1">El DNI es invalido.</p>
-                        <input type="text" name="dni" id="dni-1" maxlength="9" placeholder="Escribe tu DNI"><br>
-                    </div><br>
-
-                    <div class="inputArea">
-                        <label for="adress-1">Dirección:</label>
-                        <input type="text" name="adress" id="adress-1" placeholder="Escribe tu dirección"><br>
-                    </div><br>
-
-                    <div class="inputArea">
-                        <label for="cp-1">CP:</label>
-                        <p id="errorPhone-1">Este campo solo puede contener números.</p>
-                        <input type="number" name="cp" id="cp-1" placeholder="Escribe tu codigo postal"><br>
-                    </div><br>
-
-                    <div class="inputArea">
-                        <label for="age-1">Edad:</label>
-                        <p id="errorEdad-1">Este campo solo puede contener números.</p>
-                        <input type="number" name="age" id="age-1" placeholder="Escribe tu edad"><br>
-                    </div><br>
-                </div>
-                <div id="extraPersons"></div>
-            </div>
+            <div id="extraPersons"></div>
             <button type="submit">Enviar</button>
         </form>
     </div>
