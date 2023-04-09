@@ -81,6 +81,37 @@ function destinationDisable() {
     });
 }
 
+// function formGenerator() {
+//     $('#numTick').change(function () {
+
+//         let numTickets = parseInt($('#numTick').val()) - 1;
+
+//         // Eliminar los formularios existentes
+//         $('#extraPersons').empty();
+
+//         // Generador de formularios dinámicamentes
+//         for (let i = 2; i <= numTickets + 1; i++) {
+//             // Crear un nuevo div para el formulario
+//             let formContainer = $('<div class="personalDataSection">');
+//             formContainer.attr('id', 'form' + i);
+
+//             // Copiar el HTML del formulario
+//             let formHtml = $('#p1').html();
+//             console.log(formHtml);
+//             formContainer.html(formHtml);
+
+//             // Agregar el nuevo formulario al contenedor de formularios
+//             $('#extraPersons').append(formContainer);
+//             let formTitle = 'Datos personales persona ' + i;
+//             $('#form' + i + ' .title2').text(formTitle);
+//         }
+
+//         // selectAsientos();
+
+//     });
+// }
+
+
 function formGenerator() {
     $('#numTick').change(function () {
 
@@ -89,7 +120,7 @@ function formGenerator() {
         // Eliminar los formularios existentes
         $('#extraPersons').empty();
 
-        // Generador de formularios dinámicamentes
+        // Generador de formularios dinámicamente
         for (let i = 2; i <= numTickets + 1; i++) {
             // Crear un nuevo div para el formulario
             let formContainer = $('<div class="personalDataSection">');
@@ -97,19 +128,38 @@ function formGenerator() {
 
             // Copiar el HTML del formulario
             let formHtml = $('#p1').html();
-            console.log(formHtml);
             formContainer.html(formHtml);
+
+            // Asignar un ID único a cada campo de entrada y mensaje de error
+            formContainer.find('input').each(function () {
+                let oldId = $(this).attr('id');
+                let newId = oldId + '_' + i;
+                $(this).attr('id', newId);
+            });
+            formContainer.find('p').each(function () {
+                let oldId = $(this).attr('id');
+                let newId = oldId + '_' + i;
+                $(this).attr('id', newId);
+            });
+            // formContainer.find('label').each(function () {
+            //     let oldId = $(this).attr('for');
+            //     let newId = oldId + '_' + i;
+            //     $(this).attr('id', newId);
+            // });
 
             // Agregar el nuevo formulario al contenedor de formularios
             $('#extraPersons').append(formContainer);
+
+            // Actualizar el título del formulario
             let formTitle = 'Datos personales persona ' + i;
             $('#form' + i + ' .title2').text(formTitle);
         }
 
-        // selectAsientos();
+        // SelectAsientos();
 
     });
 }
+
 
 
 function validateDNI(dni, valid) {
@@ -133,11 +183,22 @@ function checkNums(num) {
     return /^[0-9\s-]+$/.poke_form(num);
 }
 
+
+
+
+
 function isValidForm() {
     let valid = true;
-    console.log("ValidatorForm = " + valid)
+    // console.log("ValidatorForm = " + valid)
+    valid = isValidFormPersonalData();
+
     return valid;
 }
+
+function isValidFormPersonalData() {
+
+}
+
 
 $(document).ready(function () {
 
