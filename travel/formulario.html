@@ -48,10 +48,12 @@
                 <div class="inputArea">
                     <label for="date_salida" class="title3">Fecha de salida:</label>
                     <input type="date" name="date_salida" id="date_salida">
+                    <p id="errorDataOrigin"></p>
                 </div>
                 <div class="inputArea">
                     <label for="date_llegada" class="title3">Fechas de regreso:</label>
                     <input type="date" name="date_llegada" id="date_llegada">
+                    <p id="errorDataLlegada"></p>
                 </div>
                 <div class="inputArea">
                     <label for="numTick" class="title3">Nº de Tickets:</label>
@@ -250,26 +252,51 @@
                     <label>No
                         <input type="radio" name="special" value="0">
                     </label><br>
+                    <textarea id="special_text" placeholder="Especifica tu necesidad especial"></textarea>
                 </div>
-                <div class="radioIn"><textarea id="special_text" placeholder="Especifica tu necesidad especial"></textarea></div>
                 <div class="inputArea">
                     <div class="title3">Tipo de ticket</div>
                     <label>
-                        <input type="radio" name="ticket-type" value="standard"
-                            data-tooltip="Incluye: solo el equipaje de cabina">
+                        <input type="radio" name="ticket-type" value=0
+                            data-tooltip="Incluye: solo el equipaje de cabina" checked>
                         Estándard
                         <span class="tooltip"></span>
                     </label>
                     <label>
-                        <input type="radio" name="ticket-type" value="preferent"
+                        <input type="radio" name="ticket-type" value=24
                             data-tooltip="Incluye: maleta de viaje hasta 10KG">
-                        Preferente
+                        Preferente | +12€ (por trayecto)
                         <span class="tooltip"></span>
                     </label>
                     <label>
-                        <input type="radio" name="ticket-type" value="premium"
+                        <input type="radio" name="ticket-type" value=50
                             data-tooltip="Incluye: asiento premium, maleta de viaje hasta 10KG y otra facturable">
-                        Premium
+                        Premium | +25€ (por trayecto)
+                        <span class="tooltip"></span>
+                    </label>
+                    <label>
+                        <h5 id="price">Total price = 0€</h5>
+                    </label>
+                </div>
+                <div class="inputArea">
+                    <div class="title3">Servicios adicionales</div>
+                    <label>
+                        <input type="checkbox" value="10" data-tooltip="Incluye: solo el equipaje de cabina" checked
+                            class="serviceDay">
+                        Alquiler parking Origen | 10€/día
+                        <span class="tooltip"></span>
+                    </label>
+                    <label>
+                        <input type="checkbox" value="30" data-tooltip="Incluye: maleta de viaje hasta 10KG"
+                            class="service">
+                        Taxi Aeropuerto Destino - Hotel | 30€
+                        <span class="tooltip"></span>
+                    </label>
+                    <label>
+                        <input type="checkbox" value="30"
+                            data-tooltip="Incluye: asiento premium, maleta de viaje hasta 10KG y otra facturable"
+                            class="serviceDay">
+                        Alquiler Coche Destino a todo Riesgo | 30€/día
                         <span class="tooltip"></span>
                     </label>
                 </div>
@@ -279,38 +306,37 @@
                 <div class="title2">Datos personales persona 1</div>
                 <div class="inputArea">
                     <label for="nombre" class="title3">Nombre:</label>
-                    <p id="errorNom">Este campo solo puede contener caracteres de la A-Z y a-z</p>
-                    <input type="text" id="nombre" placeholder="Escribe un nombre"><br>
+                    <input type="text" name="nombre" id="nombre_1" placeholder="Escribe un nombre">
+                    <p class="error" id="errorNom_1">Este campo solo puede contener caracteres de la A-Z y a-z</p>
                 </div><br>
 
                 <div class="inputArea">
                     <label for="apellido" class="title3">Apellidos:</label>
-                    <p id="errorApellido">Este campo solo puede contener caracteres de la A-Z y a-z</p>
-                    <input type="text" name="apellido" id="apellido" placeholder="Escribe un apellido"><br>
+                    <input type="text" name="apellido" id="apellido_1" placeholder="Escribe un apellido">
+                    <p class="error" id="errorAp_1">Este campo solo puede contener caracteres de la A-Z y a-z</p>
                 </div><br>
 
                 <div class="inputArea">
                     <label for="dni" class="title3">DNI:</label>
-                    <p id="errorDNI">El DNI es invalido.</p>
-                    <input type="text" name="dni" id="dni" maxlength="9" placeholder="Escribe tu DNI"><br>
+                    <input type="text" name="dni" id="dni_1" placeholder="Escribe tu DNI">
+                    <p class="error" id="errorDNI_1">El DNI es invalido.</p>
                 </div><br>
 
                 <div class="inputArea">
                     <label for="adress">Dirección:</label>
-                    <input type="text" name=
-                    "adress" id="adress" placeholder="Escribe tu dirección"><br>
+                    <input type="text" name="adress" id="adress_1" placeholder="Escribe tu dirección">
                 </div><br>
 
                 <div class="inputArea">
                     <label for="cp">CP:</label>
-                    <p id="errorPhone">Este campo solo puede contener números.</p>
-                    <input type="number" name="cp" id="cp" placeholder="Escribe tu codigo postal"><br>
+                    <input type="text" name="cp" id="cp_1" placeholder="Escribe tu codigo postal">
+                    <p class="error" id="errorCP_1">Este campo solo puede contener números.</p>
                 </div><br>
 
                 <div class="inputArea">
                     <label for="age">Edad:</label>
-                    <p id="errorEdad">Este campo solo puede contener números.</p>
-                    <input type="number" name="age" id="age" placeholder="Escribe tu edad"><br>
+                    <input type="text" name="age" id="age_1" placeholder="Escribe tu edad">
+                    <p class="error" id="errorEdad_1">Este campo solo puede contener números.</p>
                 </div><br>
             </div>
             <div id="extraPersons"></div>

@@ -27,7 +27,7 @@ input[type="radio"]:hover+.tooltip {
 
 
 h4,
-p,
+.error,
 #daySteps,
 #rep-legal {
     display: none;
@@ -113,7 +113,7 @@ input[type="radio"] {
 
 textarea {
     height: 8rem;
-    width: 25rem;
+    width: 20rem;
     resize: none;
 }
 
@@ -200,4 +200,17 @@ button[type="submit"]:hover {
     width: 100%;
     padding-bottom: 15px;
     text-align: inherit;
+}
+
+h5 {
+    font-size: 16px;
+    border: solid 2px blue;
+    text-align: center;
+    line-height: 36px;
+    height: 36px;
+}
+
+.error, p {
+    font-size: 12px;
+    color: red;
 }
