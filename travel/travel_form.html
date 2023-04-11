@@ -1,654 +1,907 @@
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@800&display=swap');
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Inconsolata', monospace;
-    }
-
-    h4 {
-        border: 2px solid white;
-        padding: 5px;
-        width: 80%;
-        background-color: rgb(174, 34, 3);
-        text-align: center;
-    }
-
     body {
         display: flex;
         height: auto;
         justify-content: center;
         align-items: center;
-        background-image: url("img/pikachu.jpg");
-        font-size: 18px;
-        color: #f1f1f1;
-        margin: 50px;
-        background: linear-gradient(-45deg, #0d7297, #3489a9, #a1d5ea);
-        height: auto;
+        background: linear-gradient(135deg, #3576c1, #65a0d3);
     }
-
-    .formContainer {
-        max-width: 1600px;
-        width: 100%;
-        background: #000000c0;
-        padding: 50px;
-        border-radius: 5px;
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    }
-
-    .formContainer .title {
+    
+    .tooltip {
+        display: none;
+        position: absolute;
+        left: 50%;
+        transform: translateX(160%) translateY(-200%);
+        background-color: #000000c2;
+        font-size: 28px;
         color: #fff;
-        font-size: 45px;
-        font-weight: 700;
-        text-align: center;
-    }
-
-    #town_div {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .formContainer form .bloque,
-    .formContainer form .bloque2,
-    .formContainer form .bloque3 {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-
-    form .bloque2 .inputArea {
-        width: calc(100%/5 - 20px);
-    }
-
-    form .bloque3 .inputArea {
-        width: calc(100%/2 - 40px);
-        margin: 20px auto;
-    }
-
-    form .bloque .inputArea {
-        margin: 20px 0 12px 0;
-        width: calc(100%/3 - 20px);
-    }
-
-
-    .bloque .inputArea input,
-    .bloque2 .inputArea input {
-        margin-top: 6px;
-        height: 40px;
-        width: 100%;
-        outline: none;
-        border-radius: 3px;
-        border: 1px solid #ccc;
-        padding: 0px 10px;
-        color: #dbd4d4;
-        font-size: 16px;
-        background-color: rgba(230, 230, 230, 0);
-    }
-
-    form .bloque #largeMail {
-        margin: 20px 0 12px 0;
-        width: calc(100%/3 - 4px);
-        color: #dbd4d4;
-        font-size: 16px;
-    }
-
-    .bloque #largeMail input {
-        margin-top: 5px;
-        height: 40px;
-        width: 200%;
-        outline: none;
-        border-radius: 3px;
-        border: 1px solid #ccc;
-        padding: 0px 10px;
-        background-color: rgba(255, 255, 255, 0);
-        font-size: 16px;
-        color: #ccc;
-    }
-
-
-
-    .bloque3 textarea {
-        resize: none;
-        height: 120px;
-        width: 100%;
-        outline: none;
-        border-radius: 3px;
-        color: #ccc;
-        border: 1px solid #ccc;
-        padding: 10px;
-        background-color: rgb(230, 230, 230, 0);
-        margin-top: 5px;
-        font-size: 16px;
-    }
-
-    select {
-        background: transparent;
-        border: 1.2px solid white;
-        color: #a39393;
-        font-size: 15px;
-        height: 30px;
         padding: 5px;
-        width: 250px;
-        margin-top: 5px;
-    }
-
-    input[type="radio"] {
+        font-size: 0.8em;
         height: auto;
-        margin: 5px;
+        width: 150px;
     }
-
-    #town_div {
-        margin-bottom: 30px;
+    
+    
+    input[type="radio"]:hover+.tooltip {
+        display: block;
     }
-
-    .bloque label {
-        display: inline-block;
-    }
-
-    p {
-        font-size: 14px;
-        color: rgb(231, 126, 107);
-        margin: 0 0 0 0;
-    }
-
-    .title-2 {
-        margin-top: 35px;
-        margin-bottom: 10px;
-        border-bottom: 2px solid rgba(92, 201, 228, 0.849);
-        width: 100%;
-        color: rgb(123, 206, 227);
-        font-size: 20px;
-    }
-
-    button {
-        margin: 20px auto;
-        width: 600px;
-        height: 50px;
-        margin: 50px calc(100%/2 - 300px) 0;
-        overflow: hidden;
-        text-align: center;
-        background-color: #65a0d3;
-        font-size: 18px;
-        border: 0;
-        cursor: pointer;
-    }
-
-    button:hover {
-        box-shadow: rgba(19, 192, 236, 0.658) 0px 0px 15px;
-        background-color: #784ebb;
-        pointer-events: fill;
-        font-size: 20px;
-    }
-
-
+    
+    
     h4,
-    p,
+    .error,
     #daySteps,
     #rep-legal {
         display: none;
     }
-</style>
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <title>Naomy Ruiz Airlines</title>
-    <link rel="shortcut icon" href="logo.png">
-</head>
-
-<body>
-    <div class="formContainer">
-        <div class="title" id="msj">Naomy Ruiz Airlines</div>
-        <form action="" id="pokeForm">
-            <div id="personalData"></div>
-            <div class="bloque">
-                <div class="title-2">Información personal</div>
-                <div class="inputArea">
-                    <label for="nombre">Nombre:</label>
-                    <p id="errorNom">Este campo solo puede contener caracteres de la A-Z y a-z</p>
-                    <input type="text" id="nombre" placeholder="Escribe un nombre"><br>
+    
+    
+    /* Contenedor del formulario */
+    .form_container {
+        margin: 50px;
+        max-width: 1200px;
+        width: 90%;
+        background: #fff;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: unset 12px 12px 2px 1px rgba(0, 0, 0, 0.1);
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    
+    /* Contenedor de secciones del formulario */
+    
+    .form-box, .personalDataSection{
+        margin: 50px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    
+    /* Input Area zonas */
+    .form-box .inputArea {
+        flex-basis: 18%;
+        flex-grow: 1;
+        flex-shrink: 1;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+        margin: 5px;
+    }
+    
+    .form-box #seat-map {
+        flex-basis: 50%;
+        flex-grow: 1;
+        flex-shrink: 1;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+        margin: 5px;
+    }
+    
+    .radioIn {
+        margin-right: calc(8%);
+    }
+    
+    .personalDataSection .inputArea{
+        flex-basis: 25%;
+        flex-grow: 1;
+        flex-shrink: 1;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+        margin: 5px;
+    }
+    
+    select, input[type="text"],
+    input[type="date"], input[type="number"] {
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        width: 100%;
+        font-size: 1rem;
+        background-color: #f5f5f5;
+    }
+    
+    label {
+        display: block;
+        margin-bottom: 8px;
+        /* position: relative; */
+    }
+    
+    input[type="radio"] {
+        width: auto;
+    }
+    
+    textarea {
+        height: 8rem;
+        width: 20rem;
+        resize: none;
+    }
+    
+    
+    /* Botón */
+    button[type="submit"] {
+        padding: 10px calc(50% - 30px);
+        background-color: #3576c1;
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    button[type="submit"]:hover {
+        background-color: #b65fbf;
+    }
+    
+    
+    /* Estilo de asientos */
+    .asientos {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .filas {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 6px;
+    }
+    
+    .left_rows {
+        margin-bottom: 25px;
+    }
+    
+    .silla {
+        display: none;
+    }
+    
+    .silla+span {
+        display: inline-block;
+        width: 30px;
+        height: 35px;
+        margin: 0 5px;
+        text-align: center;
+        line-height: 35px;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: #65a0d3;;
+        border-radius: 5px;
+        cursor: pointer;
+        border-style: double solid double;
+        border-color: rgb(0, 0, 0);
+        border-width: 4px 15px 4px 0;
+    }
+    
+    .silla:checked+span {
+        background-color: #b65fbf;
+    }
+    
+    /* Estilo de textos */
+    .title, #sub_msj{
+        font-size: 42px;
+        text-align: center;
+        margin: 40px auto;
+        color: #3576c1;
+    }
+    
+    .title2 {
+        width: 100%;
+        color: #3576c1;
+        font-size: 18px;
+        border-bottom: solid 1px rgb(178, 191, 228);
+        text-align: center;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+    }
+    
+    .title3 {
+        width: 100%;
+        padding-bottom: 15px;
+        text-align: inherit;
+    }
+    
+    h5 {
+        font-size: 16px;
+        border: solid 2px blue;
+        text-align: center;
+        line-height: 36px;
+        height: 36px;
+    }
+    
+    .error, p {
+        font-size: 12px;
+        color: red;
+    }
+    </style>
+    <!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <title>Naomy Ruiz Airlines</title>
+        <link rel="shortcut icon" href="logo.png">
+    </head>
+    
+    <body>
+        <div class="form_container">
+            <div class="title" id="sub_msj">Naomy Ruiz Airlines</div>
+            <form action="" id="airlineForm">
+                <div class="form-box">
+                    <div class="title2">Datos del vuelo</div>
+                    <div class="inputArea">
+                        <label for="origen" class="title3">Ciudad de origen:</label>
+                        <select name="origen" id="origen">
+                            <option value="0" selected disabled hidden>select</option>
+                            <option value="barcelona">Barcelona</option>
+                            <option value="madrid">Madrid</option>
+                            <option value="valencia">Valencia</option>
+                            <option value="sevilla">Sevilla</option>
+                            <option value="tenerife">Tenerife</option>
+                            <option value="bilbao">Bilbao</option>
+                        </select>
+                    </div>
+                    <div class="inputArea">
+                        <label for="destino" class="title3">Ciudad de origen:</label>
+                        <select name="destino" id="destino">
+                            <option value="0" selected disabled hidden>select</option>
+                            <option value="barcelona">Barcelona</option>
+                            <option value="madrid">Madrid</option>
+                            <option value="valencia">Valencia</option>
+                            <option value="sevilla">Sevilla</option>
+                            <option value="tenerife">Tenerife</option>
+                            <option value="bilbao">Bilbao</option>
+                        </select>
+                    </div>
+    
+                    <div class="inputArea">
+                        <label for="date_salida" class="title3">Fecha de salida:</label>
+                        <input type="date" name="date_salida" id="date_salida">
+                        <p id="errorDataOrigin"></p>
+                    </div>
+                    <div class="inputArea">
+                        <label for="date_llegada" class="title3">Fechas de regreso:</label>
+                        <input type="date" name="date_llegada" id="date_llegada">
+                        <p id="errorDataLlegada"></p>
+                    </div>
+                    <div class="inputArea">
+                        <label for="numTick" class="title3">Nº de Tickets:</label>
+                        <select name="numTick" id="numTick" value="1">
+                            <option value="1" selected>1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div><br>
                 </div>
-                <div class="inputArea">
-                    <label for="apellido">Apellidos:</label>
-                    <p id="errorApellido">Este campo solo puede contener caracteres de la A-Z y a-z</p>
-                    <input type="text" name="apellido" id="apellido" placeholder="Escribe un apellido"><br>
+                <div class="form-box">
+                    <div class="title2">Datos del vuelo</div>
+                    <div class="inputArea" id="seat-map">
+                        <div class="title3">Elige tu asiento</div>
+                        <div class="left_rows">
+                            <div class="filas">
+                                <label>
+                                    <input type="checkbox" class="silla" value="1" />
+                                    <span>1A</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="2" />
+                                    <span>2A</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="3" />
+                                    <span>3A</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="4" />
+                                    <span>4A</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="1" />
+                                    <span>5A</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="2" />
+                                    <span>6A</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="3" />
+                                    <span>7A</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="4" />
+                                    <span>8A</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="2" />
+                                    <span>9A</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="3" />
+                                    <span>VA</span>
+                                </label>
+                            </div>
+                            <div class="filas">
+                                <label>
+                                    <input type="checkbox" class="silla" value="1" />
+                                    <span>1B</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="2" />
+                                    <span>2B</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="3" />
+                                    <span>3B</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="4" />
+                                    <span>4B</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="1" />
+                                    <span>5B</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="2" />
+                                    <span>6B</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="3" />
+                                    <span>7B</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="4" />
+                                    <span>8B</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="2" />
+                                    <span>9B</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="3" />
+                                    <span>VB</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="right_rows">
+                            <div class="filas">
+                                <label>
+                                    <input type="checkbox" class="silla" value="1" />
+                                    <span>1C</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="2" />
+                                    <span>2C</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="3" />
+                                    <span>3C</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="4" />
+                                    <span>4C</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="1" />
+                                    <span>5C</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="2" />
+                                    <span>6C</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="3" />
+                                    <span>7C</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="4" />
+                                    <span>8C</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="2" />
+                                    <span>9C</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="3" />
+                                    <span>VC</span>
+                                </label>
+                            </div>
+                            <div class="filas">
+                                <label>
+                                    <input type="checkbox" class="silla" value="1" />
+                                    <span>1D</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="2" />
+                                    <span>2D</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="3" />
+                                    <span>3D</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="4" />
+                                    <span>4D</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="1" />
+                                    <span>5D</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="2" />
+                                    <span>6D</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="3" />
+                                    <span>7D</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="4" />
+                                    <span>8D</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="2" />
+                                    <span>9D</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="silla" value="3" />
+                                    <span>VD</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="inputArea">
-                    <label for="dni">DNI:</label>
-                    <p id="errorDNI">El DNI es invalido.</p>
-                    <input type="text" name="dni" id="dni" maxlength="9" placeholder="Escribe tu DNI"><br>
+    
+                <div class="form-box">
+                    <div class="inputArea, radioIn">
+                        <div class="title3">¿Tienes alguna necesidad especial?</div>
+                        <label>Si
+                            <input type="radio" name="special" value="1">
+                        </label>
+                        <label>No
+                            <input type="radio" name="special" value="0">
+                        </label><br>
+                        <textarea id="special_text" placeholder="Especifica tu necesidad especial"></textarea>
+                    </div>
+                    <div class="inputArea">
+                        <div class="title3">Tipo de ticket</div>
+                        <label>
+                            <input type="radio" name="ticket-type" value=0
+                                data-tooltip="Incluye: solo el equipaje de cabina" checked>
+                            Estándard
+                            <span class="tooltip"></span>
+                        </label>
+                        <label>
+                            <input type="radio" name="ticket-type" value=24
+                                data-tooltip="Incluye: maleta de viaje hasta 10KG">
+                            Preferente | +12€ (por trayecto)
+                            <span class="tooltip"></span>
+                        </label>
+                        <label>
+                            <input type="radio" name="ticket-type" value=50
+                                data-tooltip="Incluye: asiento premium, maleta de viaje hasta 10KG y otra facturable">
+                            Premium | +25€ (por trayecto)
+                            <span class="tooltip"></span>
+                        </label>
+                        <label>
+                            <h5 id="price">Total price = 0€</h5>
+                        </label>
+                    </div>
+                    <div class="inputArea">
+                        <div class="title3">Servicios adicionales</div>
+                        <label>
+                            <input type="checkbox" value="10" data-tooltip="Incluye: solo el equipaje de cabina" checked
+                                class="serviceDay">
+                            Alquiler parking Origen | 10€/día
+                            <span class="tooltip"></span>
+                        </label>
+                        <label>
+                            <input type="checkbox" value="30" data-tooltip="Incluye: maleta de viaje hasta 10KG"
+                                class="service">
+                            Taxi Aeropuerto Destino - Hotel | 30€
+                            <span class="tooltip"></span>
+                        </label>
+                        <label>
+                            <input type="checkbox" value="30"
+                                data-tooltip="Incluye: asiento premium, maleta de viaje hasta 10KG y otra facturable"
+                                class="serviceDay">
+                            Alquiler Coche Destino a todo Riesgo | 30€/día
+                            <span class="tooltip"></span>
+                        </label>
+                    </div>
                 </div>
-
-                <div class="inputArea">
-                    <label for="adress">Dirección:</label>
-                    <input type="text" name="adress" id="adress" placeholder="Escribe tu dirección"><br>
+    
+                <div class="personalDataSection" id="p1">
+                    <div class="title2">Datos personales persona 1</div>
+                    <div class="inputArea">
+                        <label for="nombre" class="title3">Nombre:</label>
+                        <input type="text" name="nombre" id="nombre_1" placeholder="Escribe un nombre">
+                        <p class="error" id="errorNom_1">Este campo solo puede contener caracteres de la A-Z y a-z</p>
+                    </div><br>
+    
+                    <div class="inputArea">
+                        <label for="apellido" class="title3">Apellidos:</label>
+                        <input type="text" name="apellido" id="apellido_1" placeholder="Escribe un apellido">
+                        <p class="error" id="errorAp_1">Este campo solo puede contener caracteres de la A-Z y a-z</p>
+                    </div><br>
+    
+                    <div class="inputArea">
+                        <label for="dni" class="title3">DNI:</label>
+                        <input type="text" name="dni" id="dni_1" placeholder="Escribe tu DNI">
+                        <p class="error" id="errorDNI_1">El DNI es invalido.</p>
+                    </div><br>
+    
+                    <div class="inputArea">
+                        <label for="adress">Dirección:</label>
+                        <input type="text" name="adress" id="adress_1" placeholder="Escribe tu dirección">
+                    </div><br>
+    
+                    <div class="inputArea">
+                        <label for="cp">CP:</label>
+                        <input type="text" name="cp" id="cp_1" placeholder="Escribe tu codigo postal">
+                        <p class="error" id="errorCP_1">Este campo solo puede contener números.</p>
+                    </div><br>
+    
+                    <div class="inputArea">
+                        <label for="age">Edad:</label>
+                        <input type="text" name="age" id="age_1" placeholder="Escribe tu edad">
+                        <p class="error" id="errorEdad_1">Este campo solo puede contener números.</p>
+                    </div><br>
                 </div>
-
-                <div class="inputArea">
-                    <label for="phone">CP:</label>
-                    <p id="errorPhone">Este campo solo puede contener números.</p>
-                    <input type="number" name="cp" id="cp" placeholder="Escribe tu codigo postal"><br>
-                </div>
-
-                <div class="inputArea">
-                    <label for="age">Edad:</label>
-                    <p id="errorEdad">Este campo solo puede contener números.</p>
-                    <input type="number" name="age" id="age" placeholder="Escribe tu edad"><br>
-                </div>
-                <div class="radio-buttons"><br>
-                    <label>Viajas con tutor legal?</label><br>
-                    <input type="radio" id="tutor_si" name="tutor" value="1">
-                    <label for="pok1">Si</label><br>
-                    <input type="radio" id="tutor_no" name="tutor" value="0">
-                    <label for="pok2">No</label><br>
-                </div>
-            </div>
-
-            <div class="bloque3" id="rows-4">
-                <div class="title-2">Test psicológico</div>
-                <div class="inputArea">
-                    <label for="know">¿Sabías algo de los pokémons antes?</label><br>
-                    <textarea type="text" name="know" id="know" placeholder="Escribe tu respuesta..."></textarea>
-                </div>
-                <div class="inputArea">
-                    <label for="know">¿Qué tipo de pokémon te gusta más?</label><br>
-                    <textarea type="text" name="know" id="know" placeholder="Escribe tu respuesta..."></textarea>
-                </div>
-                <div class="inputArea">
-                    <label for="know">¿Qué harías si tu pokémon se queda sin energía?</label><br>
-                    <textarea type="text" name="know" id="know" placeholder="Escribe tu respuesta..."></textarea>
-                </div>
-                <div class="inputArea">
-                    <label for="know">¿Qué es un centro pokémon?</label><br>
-                    <textarea type="text" name="know" id="know" placeholder="Escribe tu respuesta..."></textarea>
-                </div>
-            </div>
-
-            <button type="submit">Enviar CV</button>
-    </div>
-    </form>
-    </div>
-    <script>
-        function isValidForm() {
-            valido = true;
-
-            valido1 = validatePersonalData();
-            valido2 = validateAge(valido);
-            console.log(valido2);
-            valido3 = validateHealth();
-            if (!(valido1 == true && valido2 == true && valido3 == true))
-                valido = false;
-
-            return valido;
-        }
-
-        function validatePersonalData() {
-            valid = true;
-            if ($("#nombre").val() == '') {
-                $("#nombre").css('box-shadow', "rgba(226, 12, 12, 0.804) 0px 5px 15px");
-                valid = false;
-            } else {
-                if (checkStr($("#nombre").val()) == true) {
-                    $("#nombre").css('box-shadow', "green 0px 5px 15px");
-                    $("#errorNom").css('display', "none");
-                } else if (checkStr($("#nombre").val()) == false) {
-                    valid = false;
-                    $("#nombre").css('box-shadow', "orange 0px 5px 15px");
-                    $("#errorNom").css('display', "block");
-                }
-            }
-
-            if ($("#apellido").val() == '') {
-                $("#apellido").css('box-shadow', "rgba(226, 12, 12, 0.804) 0px 5px 15px");
-                valid = false;
-            } else {
-                if (checkStr($("#apellido").val()) == true) {
-                    $("#apellido").css('box-shadow', "green 0px 5px 15px");
-                    $("#errorApellido").css('display', "none");
-                } else if (checkStr($("#nombre").val()) == false) {
-                    valid = false;
-                    $("#apellido").css('box-shadow', "orange 0px 5px 15px");
-                    $("#errorApellido").css('display', "block");
-                }
-            }
-
-            if ($("#dni").val() == '') {
-                $("#dni").css('box-shadow', "rgba(226, 12, 12, 0.804) 0px 5px 15px");
-                valid = false;
-            } else {
-                if (validateDNI($("#dni").val(), valid) == true) {
-                    $("#dni").css('box-shadow', "green 0px 5px 15px");
-                    $("#errorDNI").css('display', "none");
-                }
-                else {
-                    valid = false;
-                    $("#dni").css('box-shadow', "orange 0px 5px 15px");
-                    $("#errorDNI").css('display', "block");
-                }
-            }
-
-            if ($("#age").val() == '') {
-                $("#age").css('box-shadow', "rgba(226, 12, 12, 0.804) 0px 5px 15px");
-                valid = false;
-            } else {
-                if (checkNums($("#age").val(), valid) == true) {
-                    $("#age").css('box-shadow', "green 0px 5px 15px");
-                    $("#errorEdad").css('display', "none");
-                }
-                else {
-                    valid = false;
-                    $("#age").css('box-shadow', "orange 0px 5px 15px");
-                    $("#errorEdad").css('display', "block");
-                }
-            }
-
-            if ($("#phone").val() == '') {
-                $("#phone").css('box-shadow', "rgba(226, 12, 12, 0.804) 0px 5px 15px");
-                valid = false;
-            } else {
-                if (checkNums($("#phone").val()) === true) {
-                    $("#phone").css('box-shadow', "green 0px 5px 15px");
-                    $("#errorPhone").css('display', "none");
-                    console.log(checkNums($("#phone").val()));
-                } else if (checkNums($("#phone").val()) == false) {
-                    valid = false;
-                    $("#phone").css('box-shadow', "orange 0px 5px 15px");
-                    $("#errorPhone").css('display', "block");
-                }
-            }
-
-            if ($("#email").val() == '') {
-                $("#email").css('box-shadow', "rgba(226, 12, 12, 0.804) 0px 5px 15px");
-                valid = false;
-            } else {
-                if (checkEmail($("#email").val()) === true) {
-                    $("#email").css('box-shadow', "green 0px 5px 15px");
-                    $("#errorEmail").css('display', "none");
-                    console.log(checkEmail($("#email").val()));
-                } else if (checkEmail($("#email").val()) == false) {
-                    valid = false;
-                    $("#email").css('box-shadow', "orange 0px 5px 15px");
-                    $("#errorEmail").css('display', "block");
-                }
-            }
-
-            return valid;
-        }
-
-        function validateReplegal(valid) {
-            if ($("#nombre2").val() == '') {
-                $("#nombre2").css('box-shadow', "rgba(226, 12, 12, 0.804) 0px 5px 15px");
-                valid = false;
-            } else {
-                if (checkStr($("#nombre2").val()) == true) {
-                    $("#nombre2").css('box-shadow', "green 0px 5px 15px");
-                    $("#errorNom2").css('display', "none");
-                } else if (checkStr($("#nombre").val()) == false) {
-                    valid = false;
-                    $("#nombre2").css('box-shadow', "orange 0px 5px 15px");
-                    $("#errorNom2").css('display', "block");
-                }
-            }
-
-            if ($("#apellido2").val() == '') {
-                $("#apellido2").css('box-shadow', "rgba(226, 12, 12, 0.804) 0px 5px 15px");
-                valid = false;
-            } else {
-                if (checkStr($("#apellido2").val()) == true) {
-                    $("#apellido2").css('box-shadow', "green 0px 5px 15px");
-                    $("#errorApellido2").css('display', "none");
-                } else if (checkStr($("#nombre").val()) == false) {
-                    valid = false;
-                    $("#apellido2").css('box-shadow', "orange 0px 5px 15px");
-                    $("#errorApellido2").css('display', "block");
-                }
-            }
-
-            if ($("#dni2").val() == '') {
-                $("#dni2").css('box-shadow', "rgba(226, 12, 12, 0.804) 0px 5px 15px");
-                valid = false;
-            } else {
-                if (validateDNI($("#dni2").val(), valid) == true) {
-                    $("#dni2").css('box-shadow', "green 0px 5px 15px");
-                    $("#errorDNI2").css('display', "none");
-                }
-                else {
-                    valid = false;
-                    $("#dni2").css('box-shadow', "orange 0px 5px 15px");
-                    $("#errorDNI2").css('display', "block");
-                }
-            }
-
-            if (valid == false) {
-                $("#repLegalError").show();
-            } else {
-                $("#repLegalError").hide();
-            }
-
-            console.log("validateRepLegal" + valid);
-            return valid;
-        }
-
-        function validateHealth() {
-            let valid = true;
-            if ($("#peso").val() == '') {
-                $("#peso").css('box-shadow', "rgba(226, 12, 12, 0.804) 0px 5px 15px");
-                valid = false;
-            } else {
-                if (checkNums($("#peso").val(), valid) == true) {
-                    $("#peso").css('box-shadow', "green 0px 5px 15px");
-                    $("#errorPeso").css('display', "none");
-                }
-                else {
-                    valid = false;
-                    $("#peso").css('box-shadow', "orange 0px 5px 15px");
-                    $("#errorPeso").css('display', "block");
-                }
-            }
-            if ($("#altura").val() == '') {
-                $("#daySteps").show();
-                $("#altura").css('box-shadow', "rgba(226, 12, 12, 0.804) 0px 5px 15px");
-                valid = false;
-            } else {
-                if (checkNums($("#altura").val(), valid) == true) {
-                    $("#altura").css('box-shadow', "green 0px 5px 15px");
-                    $("#errorAltura").css('display', "none");
-                }
-                else {
-                    valid = false;
-                    $("#altura").css('box-shadow', "orange 0px 5px 15px");
-                    $("#errorAltura").css('display', "block");
-                }
-            }
-
-            return valid;
-        }
-        //Comprobamos la edad y mostramos (o no) bloque rep. legal
-        function validateAge(valid) {
-            $("#age").blur(function () {
-                let edad = parseInt($("#age").val());
-                if (edad < 18) {
-                    $("#rep-legal").css('display', "block");
-                } else {
-                    $("#rep-legal").css('display', "none");
-                }
-            });
-            if (parseInt($("#age").val()) < 18)
-                valid = validateReplegal(valid);
-            console.log("validateAge: " + valid);
-            return valid;
-        }
-
-        function daySteps() {
-            $('input[name="workout"]').click(function () {
-                if (this.value == 1) {
-                    $("#daySteps").show();
-                } else if (this.value == 0) {
-                    $("#daySteps").hide();
-                }
-            });
-        }
-
-        //Elección de Pókemos: al hacer click en Pikachu nos asigna Pueblo paleta
-        function selectedPikachu() {
-            $("input[name='pokemon']").on("change", function () {
-                // Si se selecciona Pikachu
-                if ($(this).val() === "img/pikachu.png") {
-                    $("#town").hide();
-                    $("h4").show();
-                    // Establecer el valor del select en "Pueblo Paleta"
-                    $('#myTown').attr('src', "img/paleta.png");
-                    $("#town").val("img/paleta.png");
-                } else {
-                    // Mostrar el select
-                    $("h4").hide();
-                    $("#town").show();
-                    $('#town').change(function () {
-                        var imagenURL = $(this).val();
-                        console.log(imagenURL);
-                        $('#myTown').attr('src', imagenURL);
-                        $('#myTown').css('box-shadow', "rgba(19, 192, 236, 0.658) 0px 5px 15px");
-                    });
-                }
-            });
-        }
-
-        // Comprobamo sque el DNI esté bien
-        function validateDNI(dni, valid) {
-            dni = dni.toUpperCase();
-            let letrasValidas = 'TRWAGMYFPDXBNJZSQVHLCKET';
-            let calculoLetra = letrasValidas[dni.slice(0, 8) % 23];
-            if (dni.slice(8, 9) == calculoLetra) valid = true;
-            else valid = false;
-            return valid;
-        }
-
-
-        //Comprobamos campos de texto
-        function checkStr(cadena) {
-            return /^[a-zA-Z\s-]+$/.test(cadena);
-        }
-
-        //Comprobacion numeros
-        function checkNums(num) {
-            return /^[0-9\s-]+$/.test(num);
-        }
-        
-       // for(let i=0; i<recogeElNumDeBilletes; i++){
-            
-         //   $("#personalData").html(generatePersonalData(i));
-        //}
-        function generatePersonalData(numPersona){
-           // let persona = "Pasajero "+numPersona;
-            //let htmlDataPerson = " <div class='bloque'>";
-            //htmlDataPerson += "  <div class='title-2'>Información personal</div>";
-            /*
-            <div class="bloque">
-                <div class="title-2">Información personal</div>
-                let idNombre = "nombre"+numPersona;
-                <div class="inputArea">
-                    <label for="nombre">Nombre:</label>
-                    <p id="errorNom">Este campo solo puede contener caracteres de la A-Z y a-z</p>
-                    <input type="text" id=`${idNombre}` placeholder="Escribe un nombre"><br>
-                </div>
-                <div class="inputArea">
-                    <label for="apellido">Apellidos:</label>
-                    <p id="errorApellido">Este campo solo puede contener caracteres de la A-Z y a-z</p>
-                    <input type="text" name="apellido" id="apellido" placeholder="Escribe un apellido"><br>
-                </div>
-
-                <div class="inputArea">
-                    <label for="dni">DNI:</label>
-                    <p id="errorDNI">El DNI es invalido.</p>
-                    <input type="text" name="dni" id="dni" maxlength="9" placeholder="Escribe tu DNI"><br>
-                </div>
-
-                <div class="inputArea">
-                    <label for="adress">Dirección:</label>
-                    <input type="text" name="adress" id="adress" placeholder="Escribe tu dirección"><br>
-                </div>
-
-                <div class="inputArea">
-                    <label for="phone">CP:</label>
-                    <p id="errorPhone">Este campo solo puede contener números.</p>
-                    <input type="number" name="cp" id="cp" placeholder="Escribe tu codigo postal"><br>
-                </div>
-
-                <div class="inputArea">
-                    <label for="age">Edad:</label>
-                    <p id="errorEdad">Este campo solo puede contener números.</p>
-                    <input type="number" name="age" id="age" placeholder="Escribe tu edad"><br>
-                </div>
-                <div class="radio-buttons"><br>
-                    <label>Viajas con tutor legal?</label><br>
-                    <input type="radio" id="tutor_si" name="tutor" value="1">
-                    <label for="pok1">Si</label><br>
-                    <input type="radio" id="tutor_no" name="tutor" value="0">
-                    <label for="pok2">No</label><br>
-                </div>
-            </div>
-
-           return htmlDataPerson;
-        }
-        function checkEmail(email) {
-            return /\S+@\S+\.\S+/.test(email);
-        }
-
-        function showImage() {
-            $('input[name="pokemon"]').click(function () {
-                var imagenURL = $(this).val();
-                $('#miPok').attr('src', imagenURL);
-            });
-        }
-
-        function backgroundEffect() {
-            $("input, textarea").focus(function () {
-                $(this).css('box-shadow', "rgba(19, 192, 236, 0.658) 0px 5px 15px");
-            });
-            $("input, textarea").blur(function () {
-                $(this).css('box-shadow', "0 0");
-            });
-        }
-
-
-        $(document).ready(function () {
-            console.log("nombre"+1);
-            //Comprobar edad: muestra sección datos de encargado legal
-            validateAge();
-
-            //Mostrar imagen del pokemon
-            showImage();
-
-            //Mostrar imagen del pueblo
-            selectedPikachu();
-
-            //Efecto del backgroun
-            backgroundEffect();
-
-            //Pasos diarios shos if excercise
-            daySteps();
-
-            //PRINCIPAL FUNCTION VALIDATE
-            $("#pokeForm").submit(function () {
-                // Esconde el formulario y enseña la frase señalada
-                let done = isValidForm();
-                if (done) {
-                    let nombre = $("#nombre").val();
-                    $("#msj").text(nombre + '\n Eperamos que hayas sido seleccionad@ y te incorpores a nuestra plantilla lo más pronto posible <3');
-                    $("form").hide();
-                }
-                event.preventDefault();
-            });
+                <div id="extraPersons"></div>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    
+        <script>
+            function showTooltip() {
+        $("input[type='radio']").hover(function () {
+            let tooltipText = $(this).data("tooltip");
+            $(this).next(".tooltip").text(tooltipText);
+        }, function () {
+            $(this).next(".tooltip").text("");
         });
-    </script>
-</body>
-
-</html>
+    }
+    
+    
+    function selectAsientos() {
+    
+        let numTickets = 1;
+    
+        $('#numTick').change(function () {
+            numTickets = parseInt($('#numTick').val());
+            $("#seat-map input[type='checkbox']").prop("checked", false);
+        });
+    
+    
+        $('#seat-map input[type="checkbox"]').change(function () {
+            let checkboxes = $('#seat-map input[type="checkbox"]:checked');
+            if (checkboxes.length > numTickets) {
+                this.checked = false;
+            }
+        });
+    }
+    
+    function dateValidator() {
+        let today = new Date();
+        $('#date_salida, #date_llegada').change(function () {
+            // Obtener las fechas de los campos de entrada
+            let fechaSalida = Date.parse($('#date_salida').val());
+            let fechaLlegada = Date.parse($('#date_llegada').val());
+    
+            // Validar las fechas
+            if (fechaSalida >= fechaLlegada) {
+                $("#errorDataLlegada").text("La fecha de llegada debe ser superior a la de regreso.");
+                $('#date_salida').val('').focus();
+                $('#date_llegada').val('').focus();
+            } else if (fechaSalida < today || fechaLlegada < today) {
+                $("#errorDataOrigin").text("Para ayer no hay ticket, ni para hoy");
+                $('#date_llegada').val('').focus();
+                $('#date_salida').val('').focus();
+            } else {
+                $("#errorDataOrigin, #errorDataLlegada").text("");
+            }
+        });
+    
+    }
+    
+    function specialNeed() {
+        $('#special_text').hide();
+    
+        $('input[name="special"]').click(function () {
+            if ($(this).val() == 1) {
+                $('#special_text').show();
+            } else {
+                $('#special_text').hide();
+            }
+        });
+    }
+    
+    //Desabilitar el mismo value si en el select ya seleccionada
+    function destinationDisable() {
+        $('#origen').on('change', function () {
+            let selected = $(this).val();
+            $('#destino option').show(); // Mostrar todas las opciones primero
+            $('#destino option[value="' + selected + '"]').hide(); // Ocultar la opción seleccionada en el otro select
+        });
+    
+        $('#destino').on('change', function () {
+            let selected = $(this).val();
+            $('#origen option').show();
+            $('#origen option[value="' + selected + '"]').hide();
+        });
+    }
+    
+    
+    function formGenerator() {
+        $('#numTick').change(function () {
+    
+            let numTickets = parseInt($('#numTick').val()) - 1;
+    
+            // Eliminar los formularios existentes
+            $('#extraPersons').empty();
+    
+            // Generador de formularios dinámicamente
+            for (let i = 2; i <= numTickets + 1; i++) {
+                // Crear un nuevo div para el formulario
+                let formContainer = $('<div class="personalDataSection">');
+                formContainer.attr('id', 'form' + i);
+    
+                // Copiar el HTML del formulario
+                let formHtml = $('#p1').html();
+                formContainer.html(formHtml);
+    
+                // Asignar un ID único a cada campo de entrada y mensaje de error
+                formContainer.find('input').each(function () {
+                    let oldId = $(this).attr('id');
+                    let newId = oldId.slice(0, -2) + '_' + i;
+                    console.log(newId);
+                    $(this).attr('id', newId);
+                });
+                formContainer.find('p').each(function () {
+                    let oldId = $(this).attr('id');
+                    let newId = oldId.slice(0, -2) + '_' + i;
+                    $(this).attr('id', newId);
+                });
+    
+                // Agregar el nuevo formulario al contenedor de formularios
+                $('#extraPersons').append(formContainer);
+    
+                // Actualizar el título del formulario
+                let formTitle = 'Datos personales persona ' + i;
+                $('#form' + i + ' .title2').text(formTitle);
+            }
+    
+            // SelectAsientos();
+    
+        });
+    }
+    
+    function validateDNI(dni) {
+        if (dni.length > 9)
+            return false;
+        let valid = true;
+        dni = dni.toUpperCase();
+        let letrasValidas = 'TRWAGMYFPDXBNJZSQVHLCKET';
+        let calculoLetra = letrasValidas[dni.slice(0, 8) % 23];
+        if (!(dni.slice(8, 9) == calculoLetra))
+            valid = false;
+        return valid;
+    }
+    
+    
+    function checkEmail(email) {
+        return /\S+@\S+\.\S+/.poke_form(email);
+    }
+    
+    function checkNums(num) {
+        return /^[0-9\s-]+$/.poke_form(num);
+    }
+    
+    function calculateDays() {
+        startDate = $("#date_salida").val();
+        endDate = $("#date_llegada").val();
+        let diff = 0;
+        if (startDate && endDate) {
+            let start = new Date(startDate);
+            let end = new Date(endDate);
+            diff = Math.floor((end - start) / (1000 * 60 * 60 * 24)); // Convertimos de milisegundos a días
+            console.log(diff); // Mostramos la diferencia en días en la consola
+        }
+        return diff;
+    }
+    
+    function validateData(formNum, valid) {
+        // Obtener los elementos del formulario
+        let nombre = $('#nombre_' + formNum);
+        let apellido = $('#apellido_' + formNum);
+        let dni = $('#dni_' + formNum);
+        let cp = $('#cp_' + formNum);
+        let age = $('#age_' + formNum);
+    
+        //Obetener mensajes de error
+    
+        // Establecer las expresiones regulares para la validación
+        let strValidator = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+    
+        // Validación de los campos
+        if (nombre.val() == '') {
+            nombre.css('border', "2px solid orange");
+            valid = false;
+        } else {
+            if (!strValidator.test(nombre.val())) {
+                $('#errorNom_' + formNum).show();
+                nombre.css('border', "2px solid red");
+                valid = false;
+            } else {
+                // console.log(nombre.val());
+                $('#errorNom_' + formNum).hide();
+                nombre.css('border', "2px solid green");
+            }
+        }
+    
+        if (apellido.val() == '') {
+            valid = false;
+            apellido.css('border', "2px solid orange");
+        } else {
+            if (!strValidator.test(apellido.val())) {
+                $('#errorAp_' + formNum).show();
+                apellido.css('border', "2px solid red");
+                valid = false;
+            } else {
+                $('#errorAp_' + formNum).hide();
+                apellido.css('border', "2px solid green");
+            }
+        }
+    
+        if (dni.val() == '') {
+            valid = false;
+            dni.css('border', "2px solid orange");
+        } else {
+            if (validateDNI(dni.val())) {
+                $('#errorDNI_' + formNum).hide();
+                dni.css('border', "2px solid green");
+            } else {
+                valid = false;
+                $('#errorDNI_' + formNum).show();
+                dni.css('border', "2px solid red");
+            }
+        }
+    
+        if (cp.val() == '') {
+            valid = false;
+            cp.css('border', "2px solid orange");
+        } else {
+            if (isNaN(cp.val())) {
+                valid = false;
+                $('#errorCP_' + formNum).show();
+                cp.css('border', "2px solid red");
+            } else {
+                $('#errorCP_' + formNum).hide();
+                cp.css('border', "2px solid green");
+            }
+        }
+    
+        if (age.val() == '') {
+            valid = false;
+            age.css('border', "2px solid orange");
+        } else {
+            if (isNaN(age.val())) {
+                valid = false;
+                $('#errorEdad_' + formNum).show();
+                age.css('border', "2px solid red");
+            } else {
+                $('#errorEdad_' + formNum).hide();
+                age.css('border', "2px solid green");
+            }
+        }
+        return valid;
+    }
+    
+    //Validar datos del vuelo no esten vacios
+    function preventEmptyData() {
+        if ($("#origen, #destino, #numTick").val() == "0" || $("#date_salida, #date_llegada").val() == "") {
+            // código para manejar el error
+        }
+    
+    }
+    
+    // Validador para cada sección de datos personales
+    function validatePersonalData(valid) {
+        let numTickets = parseInt($('#numTick').val());
+        for (let i = 1; i <= numTickets; i++) {
+            valid = validateData(i, valid);
+        }
+        return valid;
+    }
+    
+    //Validacion de formularios
+    function isValidForm() {
+        let valid = true;
+        // console.log("ValidatorForm = " + valid)
+        // validatePersonalData(valid) && 
+        if (!validatePersonalData(valid))
+            valid = false;
+        console.log("isValidForm = " + valid);
+    
+        return valid;
+    }
+    
+    function priceCalculator() {
+        $("input[type='radio'], select, .serviceDay, .service").change(function () {
+            let numTickets = parseInt($('#numTick').val());
+            let numDays = calculateDays();
+            let ticketTypePrice = parseInt($("input[name='ticket-type']:checked").val()) + 80;
+            let extraService = 0;
+    
+            $(".serviceDay").each(function () {
+                if ($(this).is(":checked"))
+                    extraService += parseInt($(this).val()) * numDays;
+                    console.log("Day pay extra = " + extraService);
+            });
+    
+            $(".service").each(function () {
+                if ($(this).is(":checked"))
+                    extraService += parseInt($(this).val());
+            });
+    
+            console.log(extraService);
+            let price = ticketTypePrice * numTickets + extraService;
+            $("#price").text("Total price = " + price + "€");
+            return price;
+        });
+    }
+    
+    function submitFormValidate() {
+        $("form").submit(function () {
+            calculateDays();
+            //Esconde el formulario y enseña la frase señalada
+            let done = isValidForm();
+            if (done) {
+                let msj = $("#sub_msj").html();
+                $("#sub_msj").html('Sus tickets llegaran a su correo principal.');
+                console.log("Submit msj = " + msj);
+                $("form").hide();
+            }
+            event.preventDefault();
+        });
+    }
+    
+    
+    $(document).ready(function () {
+    
+        // Inhabilitador de campos según elección de origen y destino
+        destinationDisable();
+    
+        // Generador de formularios según el número de pasajeros del select
+        formGenerator();
+    
+        // Valida que que la fecha sea una correcta
+        dateValidator();
+    
+        // Según el número de asientos seleccionados así mismo se pueden elegir los asientos
+        selectAsientos();
+    
+        // Muestra cuando haces hover el tooltipe
+        showTooltip();
+    
+        // Vontrola el textarea de necesidades especiales
+        specialNeed();
+    
+        //Calcula el precio
+        priceCalculator();
+    
+        // Valida el formulario al hacer submit
+        submitFormValidate();
+    
+    });
+        </script>
+    
+    </body>
+    
+    </html>
